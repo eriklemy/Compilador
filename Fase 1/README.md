@@ -27,14 +27,40 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as principais características da linguagem, com ênfase nas regras de produção criadas para interação com o hardware.
 
+### TODO: Bloco de Declarações
+
+### TODO: Lexema Basico
+
+### TODO: Regra de Produção para Expressões
+
+### TODO: Tratamento dos numeros e letras
+
+### TODO: Comunicação com Hardware
+
+
 
 ## Exemplos de Código
 
 TODO: **Exemplos de Código**: Apresente pelo menos três exemplos de código que demonstrem todas as funcionalidades da linguagem criada. Esses exemplos devem abranger diferentes aspectos da linguagem, como declaração de variáveis, expressões matemáticas, e interação com hardware.
 
 
+### Exemplo *.Cpy:
+```C++
+led_on: int = 1
+led_off: int = 0
+ligado: bool = true
+
+void main():
+    while (ligado):
+        if led_on:
+            print(led_on)
+        else:
+            print(led_off)
+    return 0
+```
+
+
 ## Documentação
 
 TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
-
 
