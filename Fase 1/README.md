@@ -31,8 +31,6 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 ### TODO: Bloco de Declarações
 
-O bloco de declarações é uma sequência de declarações de variáveis, constantes, funções e declarações para interação com o hardware. O bloco de declarações deve ser encerrado por um ponto-e-vírgula.
-
 Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
 | Produção   | Regra de Produção                     |
@@ -52,6 +50,25 @@ Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
 
 Esta tabela apresenta as regras de produção da linguagem, indicando como a gramática da linguagem é estruturada. Certifique-se de adaptar essas regras de produção para sua linguagem específica, adicionando detalhes e funcionalidades conforme necessário.
+
+As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
+
+1. **Adição de Funções e Parâmetros**:
+   - A produção `func_decl` foi introduzida para permitir a declaração de funções com parâmetros e tipo de retorno.
+   - A produção `params` foi adicionada para definir a lista de parâmetros em uma função.
+   - A produção `param` permite a definição de parâmetros de função com seu tipo e nome.
+
+2. **Tipo Básico**:
+   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool`.
+
+3. **Identificadores**:
+   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos.
+
+4. **Outras Instruções**:
+   - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
+
+5. **Blocos de Função**:
+   - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 
 ### TODO: Lexema Basico
