@@ -79,7 +79,7 @@ def main() -> void:
     return 0;
 ```
 
-#### Exemplo LED embarcado
+#### Exemplo interação com Hardware - LED embarcado
 ```C++
 // pin(nome, pino, direcao)
 // write(nome, valor)
