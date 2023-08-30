@@ -33,6 +33,27 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 O bloco de declarações é uma sequência de declarações de variáveis, constantes, funções e declarações para interação com o hardware. O bloco de declarações deve ser encerrado por um ponto-e-vírgula.
 
+Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
+
+| Produção   | Regra de Produção                     |
+|------------|---------------------------------------|
+| program    | block                                 |
+| block      | { decls stmts }                       |
+| decls      | decls decl \| null                    |
+| decl       | type id;                              |
+| func_decl  | def id ( parameters ) -> type: block  |
+| params     | param, params | params | null         |
+| param      | type id                               |
+| type       | int \| float16 \| bool                |
+| stmts      | stmts stmt \| null                    |
+| stmt       | assign \| func_decl \| if_stmt \| return_stmt  |
+| assign     | id: type  = expression;               |
+| id         | [a-zA-Z-Z0-9]+                        |
+
+
+Esta tabela apresenta as regras de produção da linguagem, indicando como a gramática da linguagem é estruturada. Certifique-se de adaptar essas regras de produção para sua linguagem específica, adicionando detalhes e funcionalidades conforme necessário.
+
+
 ### TODO: Lexema Basico
 
 O lexema básico da linguagem é composto por:
@@ -41,6 +62,11 @@ O lexema básico da linguagem é composto por:
 - **Numérico**: um número inteiro ou de ponto flutuante.
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
+
+| Produção   | Regra de Produção                      |
+|------------|---------------------------------------|
+| stmt       |                             |
+
 
 ### TODO: Regra de Produção para Expressões
 
@@ -70,28 +96,17 @@ pi: float16 = 3.14159;
 ligado: bool = true;
 
 // Declara uma função para somar dois números
-def somar(a: int, b: int) -> int:
-  return a + b;
+def somar(a: int, b: int) -> int: {
+    return a + b;
+}
 
 // Declara uma função para calcular a área de um círculo
-def area_circulo(raio: float16) -> float16:
-  return PI * raio * raio;
-
-// Declara uma função para imprimir uma mensagem
-def imprimir_mensagem(char *mensagem) -> void:
-  printf("%s\n", mensagem);
-
-// exemplo LED serial
-def main() -> void:
-    while (ligado):
-        if led_on:
-            printf("%d\n", led_on);
-        else:
-            printf("%d\n", led_off);
-    return 0;
+def area_circulo(raio: float16) -> float16: {
+    return PI * raio * raio;
+}
 ```
 
-#### Exemplo interação com Hardware - LED embarcado
+#### Interação com Hardware
 ```C++
 // Declara um pino como saída
 pin(led, GPIO_2, GPIO_OUT);
@@ -103,26 +118,31 @@ write(led, 1);
 read(led);
 
 // Declara uma função para ligar o LED
-def ligar_led() -> void:
-  write(led, 1);
+def ligar_led() -> void: {
+    write(led, 1);
+}
 
-def desligar_led() -> void:
+def desligar_led() -> void: {
     write(led, 0);
+}
 
-def led(estado: int) -> void:
-  if (estado == 1):
-    // liga o LED
-    ligar_led();
-  else
-    // desliga o LED
-    desligar_led();
+def led(estado: int) -> void: {
+    if (estado == 1): {
+        // liga o LED
+        ligar_led();
+    }
+    else: desligar_led();
+}
 
-def main() -> void:
-    if read(led) == 0:
+def main() -> int: {
+    if (read(led) == 0): {
         led(1);
-    else:
-        led(0);
+    }
+    else: led(0);
+
     return 0;
+}
+
 ```
 
 ## Documentação
