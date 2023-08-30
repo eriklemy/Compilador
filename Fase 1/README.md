@@ -14,7 +14,7 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 - [] Expressões e Operadores: Deve ser implementada a precedência de operadores e associatividade corretas em expressões matemáticas. Use não-terminais para definir níveis de precedência e um não-terminal "factor" para tratar expressões entre parênteses, identificadores, referências de arranjos e constantes.
 
-- [] Tipos Estáticos: A linguagem deve ser de tipos estáticos, ou seja, os tipos de variáveis, valores e expressões precisam ser explicitamente definidos no código.
+- [x] Tipos Estáticos: A linguagem deve ser de tipos estáticos, ou seja, os tipos de variáveis, valores e expressões precisam ser explicitamente definidos no código.
 
 - [] Interção com Hardware: É necessário definir regras de produção para interação com o hardware, permitindo ler e escrever em pinos do microcomputador, portas seriais, e em componentes opcionais, como conversores digital-analógico e analógico-digital.
 
@@ -25,15 +25,27 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 ## Apresentação da Linguagem
 
+Estética: A linguagem é baseada na sintaxe de Python, com algumas características de C, como a declaração de tipos de dados e necessidade de uso do ";".
+
 TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as principais características da linguagem, com ênfase nas regras de produção criadas para interação com o hardware.
 
 ### TODO: Bloco de Declarações
 
+O bloco de declarações é uma sequência de declarações de variáveis, constantes, funções e declarações para interação com o hardware. O bloco de declarações deve ser encerrado por um ponto-e-vírgula.
+
 ### TODO: Lexema Basico
+
+O lexema básico da linguagem é composto por:
+
+- **Identificador**: uma sequência de letras, números e sublinhados, começando com uma letra.
+- **Numérico**: um número inteiro ou de ponto flutuante.
+- **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
+- **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
 ### TODO: Regra de Produção para Expressões
 
 ### TODO: Tratamento dos numeros e letras
+
 
 ### TODO: Comunicação com Hardware
 
@@ -81,10 +93,6 @@ def main() -> void:
 
 #### Exemplo interação com Hardware - LED embarcado
 ```C++
-// pin(nome, pino, direcao)
-// write(nome, valor)
-// read(nome)
-
 // Declara um pino como saída
 pin(led, GPIO_2, GPIO_OUT);
 
@@ -121,3 +129,8 @@ def main() -> void:
 
 TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
 
+```Python
+pin(nome, pino, direcao)
+write(nome, valor)
+read(nome)
+```
