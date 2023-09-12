@@ -47,6 +47,7 @@ Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 | stmt       | assign \| func_decl \| if_stmt \| return_stmt  |
 | assign     | id: type  = expression;               |
 | id         | [a-zA-Z-Z0-9]+                        |
+| num        | [0-9]                                 |
 
 
 Esta tabela apresenta as regras de produção da linguagem, indicando como a gramática da linguagem é estruturada. Certifique-se de adaptar essas regras de produção para sua linguagem específica, adicionando detalhes e funcionalidades conforme necessário.
@@ -81,17 +82,29 @@ O lexema básico da linguagem é composto por:
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
 | Produção   | Regra de Produção                      |
-|------------|---------------------------------------|
-| stmt       |                             |
+|------------|----------------------------------------|
+| stmt       | assign \| func_decl \| if_stmt \| return_stmt |
+| if_stmt    | if ( expr ) { stmts } else { stmts } \| if ( expr ): { stmts }
+| return_stmt| return expr ;                          |
+| expr       | id \| num \| true \| false \| func_call \| bin_op \| ( expr ) |
+| func_call  | id ( args )                            |
+| args       | expr \| null |
+| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
+
 
 
 ### TODO: Regra de Produção para Expressões
+
 
 ### TODO: Tratamento dos numeros e letras
 
 
 ### TODO: Comunicação com Hardware
-
+```Arduino
+pin(nome, pino, direcao)
+write(nome, valor)
+read(nome)
+```
 
 
 ## Exemplos de Código
@@ -166,8 +179,3 @@ def main() -> int: {
 
 TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
 
-```Python
-pin(nome, pino, direcao)
-write(nome, valor)
-read(nome)
-```
