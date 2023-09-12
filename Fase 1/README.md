@@ -71,7 +71,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 
-### TODO: Lexema Basico
+### TODO: Lexema Basico - herman
 
 O lexema básico da linguagem é composto por:
 
@@ -85,12 +85,12 @@ O lexema básico da linguagem é composto por:
 | stmt       |                             |
 
 
-### TODO: Regra de Produção para Expressões
+### TODO: Regra de Produção para Expressões - gabi
 
-### TODO: Tratamento dos numeros e letras
+### TODO: Tratamento dos numeros e letras - leandro/feito
 
 
-### TODO: Comunicação com Hardware
+### TODO: Comunicação com Hardware - feito
 
 
 
