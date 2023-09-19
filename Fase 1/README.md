@@ -109,49 +109,47 @@ stmt -> var = bool
       | id (args) { stmt }
       | return bool;
       | block
+      | pin(id, num, id)
+      | write(id, bool)
+      | read(id)
 var -> var | id
      | var [ bool ] | id
 func_call -> id ( args );
 func_decl -> def id ( args ) -> type: block
 return_stmt -> return expr;
 assign -> id: type = expression;
-id -> [a-zA-Z-Z0-9]+ num -> [0-9]
+id -> [a-zA-Z-Z0-9]+ 
+num -> [0-9]
 args -> expr | null
 ```
 
-
-
-### TODO: Regra de Produção para Expressões
+### Regra de Produção para Expressões
 ```
 bool -> join || join
 join -> equality && equality
 equality -> rel ( == | != ) rel
-rel -> expr { (< | <= | >= | >) expr }
+rel -> expr (< | <= | >= | >) expr
 expr -> term ( + | - ) term
 term -> unary ( * | / ) unary
 unary -> ( ! | - ) unary | factor
 factor -> ( bool ) | loc | num | real | true | false
-loc -> [a-zA-Z-Z0-9]+ num -> [0-9]
+loc -> [a-zA-Z-Z0-9]+ 
+num -> [0-9]
 real -> [0-9].[0-9]
-true -> true
-false -> false
+bin_op -> expr + expr     
+       | expr - expr  
+       | expr * expr  
+       | expr / expr  
+       | expr == expr 
+       | expr != expr 
+       | expr < expr  
+       | expr <= expr 
+       | expr > expr  
+       | expr >= expr 
 ```
 
-| Produção    | Regra de Produção                        |
-|-------------|------------------------------------------|
-| bin_op      | expr + expr                              |
-|             | expr - expr                              |
-|             | expr * expr                              |
-|             | expr / expr                              |
-|             | expr == expr                             |
-|             | expr != expr                             |
-|             | expr < expr                              |
-|             | expr <= expr                             |
-|             | expr > expr                              |
-|             | expr >= expr                             |
+### Tratamento dos numeros e letras
 
-
-### TODO: Tratamento dos numeros e letras
 | Produção    | Regra de Produção                        |
 |-------------|------------------------------------------|
 | None        | None -> null                             |
@@ -161,15 +159,16 @@ false -> false
 | DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
 |             | DIFITSF -> None                          |
 |             | DIFITSF -> FEXP                          |
-| DIGITS      | DIGITS -> -+[0-9]                       |
+| DIGITS      | DIGITS -> -+[0-9]                        |
 |             | DIGITS -> num [0-9]                      |
-| int         | int -> real                               |
+| int         | int -> real                              |
 | float16     | float16 -> natural number                |
 | bool        | bool -> [0-1] ->                         |
 | down        | down -> -     #45 in ascii               |
 | up          | up -> +       #43 in ascii               |
 
-### TODO: Comunicação com Hardware
+
+### Comunicação com Hardware
 ```Python
 pin(nome, pino, direcao)
 write(nome, valor)
@@ -241,9 +240,4 @@ def main() -> int: {
 
     return 0;
 }
-
 ```
-
-## Documentação
-
-TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
