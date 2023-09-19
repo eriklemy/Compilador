@@ -122,14 +122,18 @@ args -> expr | null
 
 ### TODO: Regra de Produção para Expressões
 ```
-$bool	\rightarrow$	join \ || \ join
-$join	\rightarrow	$equality \ \&\& \ equality
-$equality	\rightarrow$	rel ( == | != ) rel 
-$rel	\rightarrow$	expr { (< | <= | >= | >) expr }
-$expr	\rightarrow$	term (+ | -) term 
-$term	\rightarrow$	unary (* | / ) unary 
-$unary	\rightarrow$	(! | -) unary | factor
-$factor	\rightarrow$	(bool) | loc | num | real | true | false
+bool -> join || join
+join -> equality && equality
+equality -> rel ( == | != ) rel
+rel -> expr { (< | <= | >= | >) expr }
+expr -> term ( + | - ) term
+term -> unary ( * | / ) unary
+unary -> ( ! | - ) unary | factor
+factor -> ( bool ) | loc | num | real | true | false
+loc -> [a-zA-Z-Z0-9]+ num -> [0-9]
+real -> [0-9].[0-9]
+true -> true
+false -> false
 ```
 
 
