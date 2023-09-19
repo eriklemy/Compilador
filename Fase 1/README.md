@@ -138,27 +138,33 @@ false -> false
 
 
 
-| Produção   | Regra de Produção                      |
-|------------|----------------------------------------|
-`| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |`
+| Produção    | Regra de Produção                        |
+|-------------|------------------------------------------|
+| bin_op      | expr + expr                              |
+|             | expr - expr                              |
+|             | expr * expr                              |
+|             | expr / expr                              |
+|             | expr == expr                             |
+|             | expr != expr                             |
+|             | expr < expr                              |
+|             | expr <= expr                             |
+|             | expr > expr                              |
+|             | expr >= expr                             |
+| None        | None -> null                             |
+| FEXP        | FEXP -> down DIFITSF                     |
+|             | FEXP -> up DIFITSF                       |
+| letters [A-Z] | letters [A-Z] ->                       |
+| DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
+|             | DIFITSF -> None                          |
+|             | DIFITSF -> FEXP                          |
+| DIGITS      | DIGITS -> -+[0-9]                       |
+|             | DIGITS -> num [0-9]                      |
+| int         | int -> real                               |
+| float16     | float16 -> natural number                |
+| bool        | bool -> [0-1] ->                         |
+| down        | down -> -     #45 in ascii               |
+| up          | up -> +       #43 in ascii               |
 
-```
-Produção      | Regra de produção
---------------|------------------------------------------
-None          | None -> null
-FEXP          | FEXP -> down DIFITSF
-FEXP          | FEXP -> up DIFITSF
-letters [A-Z] | letters [A-Z] ->
-DIFITSF       | DIFITSF -> DIGITSF DIGITS
-DIFITSF       | DIFITSF -> None
-DIFITSF       | DIFITSF -> FEXP
-DIGITS        | DIGITS -> -+[0-9]
-DIGITS        | DIGITS -> num [0-9]
-int           | int -> real
-float16       | float16 -> natural number
-bool          | bool -> [0-1] ->
-down          | down -> -     #45 in ascii
-up            | up -> +       #43 in ascii
 ```
 
 
