@@ -76,6 +76,21 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 
 O lexema básico da linguagem é composto por:
 
+stmt -> var = bool ;
+            | if ( bool ) { stmt }
+            | if ( bool ) { stmt } else { stmt }
+            | if ( bool ) { stmt } elif (bool) { stmt }
+            | for (var -> num; bool; var -> var +- num) { stmt }
+            | while ( bool ) { stmt }
+            | do { stmt } while ( bool ) ;
+            | break;
+            | id (args) { stmt }
+            | return bool
+            | block
+var -> var | id
+var -> var [ bool ] | id
+func_call -> id(args);
+
 - **Identificador**: uma sequência de letras, números e sublinhados, começando com uma letra.
 - **Numérico**: um número inteiro ou de ponto flutuante.
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
