@@ -52,24 +52,15 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
-| Produção   | Regra de Produção                     |
-|------------|---------------------------------------|
-| program    | block                                 |
-| block      | { decls stmts }                       |
-| decls      | decls decl \| null                    |
-| decl       | type id;                              |
-| func_decl  | def id ( parameters ) -> type: block  |
-| params     | param, params | params | null         |
-| param      | type id                               |
-| type       | int \| float16 \| bool                |
-| stmts      | stmts stmt \| null                    |
-| stmt       | assign \| func_decl \| if_stmt \| return_stmt  |
-| assign     | id: type  = expression;               |
-| id         | [a-zA-Z-Z0-9]+                        |
-| num        | [0-9]                                 |
-
-
-Esta tabela apresenta as regras de produção da linguagem, indicando como a gramática da linguagem é estruturada. Certifique-se de adaptar essas regras de produção para sua linguagem específica, adicionando detalhes e funcionalidades conforme necessário.
+### Regra de Produção                 
+$program \rightarrow block$
+$block \rightarrow \{ decls\ stmts \}$
+$decls \rightarrow decls\ decl\ |\ null$
+$decl \rightarrow type\ id;$
+$params \rightarrow param,\ params\ |\ params\ |\ null$
+$param \rightarrow type\ id$
+$type \rightarrow int\ |\ float16\ |\ bool$
+$stmts \rightarrow stmts\ stmt\ |\ null$
 
 As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
 
@@ -91,47 +82,56 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 
-### TODO: Lexema Basico - herman
+### Lexema Basico
 
 O lexema básico da linguagem é composto por:
-
-```
-stmt -> var = bool ;
-            | if ( bool ) { stmt }
-            | if ( bool ) { stmt } else { stmt }
-            | if ( bool ) { stmt } elif (bool) { stmt }
-            | for (var -> num; bool; var -> var +- num) { stmt }
-            | while ( bool ) { stmt }
-            | do { stmt } while ( bool ) ;
-            | break;
-            | id (args) { stmt }
-            | return bool
-            | block
-var -> var | id
-var -> var [ bool ] | id
-func_call -> id(args);
-```
 
 - **Identificador**: uma sequência de letras, números e sublinhados, começando com uma letra.
 - **Numérico**: um número inteiro ou de ponto flutuante.
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
-| Produção   | Regra de Produção                      |
-|------------|----------------------------------------|
-| stmt       | assign \| func_decl \| if_stmt \| return_stmt |
-| if_stmt    | if ( expr ) { stmts } else { stmts } \| if ( expr ): { stmts }
-| return_stmt| return expr ;                          |
-| expr       | id \| num \| true \| false \| func_call \| bin_op \| ( expr ) |
-| func_call  | id ( args )                            |
-| args       | expr \| null |
-| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
-
+$stmt \rightarrow var = bool;$
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\ |\ assign\ |\ func\_decl\ |\ return\_stmt$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} else: \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} else: \ stmt }$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} elif (bool): \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| for (var → num; bool; var → var +- num): \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| while ( bool ): \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| do \{ stmt \} while ( bool );}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| break;}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| id (args) \{ stmt \}}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| return bool;}$
+$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| block}$
+$var \rightarrow \text{var | id}$
+$var \rightarrow \text{var [ bool ] | id}$
+$func\_call \rightarrow id\ ( args );$
+$func\_decl \rightarrow def\ id\ ( args ) \rightarrow type:\ block $
+$return_stmt \rightarrow return \ expr;$
+$assign \rightarrow id:\ type\ =\ expression;$
+$id \rightarrow$ [a-zA-Z-Z0-9]+
+$num \rightarrow$ [0-9]
+$args \rightarrow expr \ |\ null$
 
 
 ### TODO: Regra de Produção para Expressões
+$bool	\rightarrow$	join \ || \ join
+$join	\rightarrow	$equality \ \&\& \ equality
+$equality	\rightarrow$	rel ( == | != ) rel 
+$rel	\rightarrow$	expr { (< | <= | >= | >) expr }
+$expr	\rightarrow$	term { (+ | -) term }
+$term	\rightarrow$	unary (* | / ) unary 
+$unary	\rightarrow$	(! | -) unary | factor
+$factor	\rightarrow$	(bool) | loc | num | real | true | false
 
-### TODO: Tratamento dos numeros e letras - leandro/feito
+
+| Produção   | Regra de Produção                      |
+|------------|----------------------------------------|
+| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
+
+
+### TODO: Tratamento dos numeros e letras
 
 
 ### TODO: Comunicação com Hardware
