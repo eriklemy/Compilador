@@ -91,6 +91,7 @@ O lexema básico da linguagem é composto por:
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
+```
 $stmt \rightarrow var = bool;$
 $\;\;\;\;\;\;\;\;\;\;\;\;\;\ |\ assign\ |\ func\_decl\ |\ return\_stmt$
 $\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \}}$
@@ -113,9 +114,12 @@ $assign \rightarrow id:\ type\ =\ expression;$
 $id \rightarrow$ [a-zA-Z-Z0-9]+
 $num \rightarrow$ [0-9]
 $args \rightarrow expr \ |\ null$
+```
+
 
 
 ### TODO: Regra de Produção para Expressões
+```
 $bool	\rightarrow$	join \ || \ join
 $join	\rightarrow	$equality \ \&\& \ equality
 $equality	\rightarrow$	rel ( == | != ) rel 
@@ -124,11 +128,13 @@ $expr	\rightarrow$	term (+ | -) term
 $term	\rightarrow$	unary (* | / ) unary 
 $unary	\rightarrow$	(! | -) unary | factor
 $factor	\rightarrow$	(bool) | loc | num | real | true | false
+```
+
 
 
 | Produção   | Regra de Produção                      |
 |------------|----------------------------------------|
-| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
+`| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |`
 
 
 ### TODO: Tratamento dos numeros e letras
