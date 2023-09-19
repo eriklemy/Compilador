@@ -120,7 +120,7 @@ $bool	\rightarrow$	join \ || \ join
 $join	\rightarrow	$equality \ \&\& \ equality
 $equality	\rightarrow$	rel ( == | != ) rel 
 $rel	\rightarrow$	expr { (< | <= | >= | >) expr }
-$expr	\rightarrow$	term { (+ | -) term }
+$expr	\rightarrow$	term (+ | -) term 
 $term	\rightarrow$	unary (* | / ) unary 
 $unary	\rightarrow$	(! | -) unary | factor
 $factor	\rightarrow$	(bool) | loc | num | real | true | false
