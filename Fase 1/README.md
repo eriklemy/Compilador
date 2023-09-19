@@ -52,7 +52,8 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
-### Regra de Produção                 
+### Regra de Produção        
+
 $program \rightarrow block$
 $block \rightarrow \{ decls\ stmts \}$
 $decls \rightarrow decls\ decl\ |\ null$
@@ -91,90 +92,69 @@ O lexema básico da linguagem é composto por:
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
-```
-stmt -> var = bool
-      | assign
-      | func_decl
-      | return_stmt
-      | if ( bool ): { stmt }
-      | if ( bool ): { stmt } else: { stmt }
-      | if ( bool ): { stmt } else: stmt
-      | if ( bool ): { stmt } elif (bool): { stmt }
-      | for (var -> num; bool; var -> var + num): { stmt }
-      | while ( bool ): { stmt }
-      | do { stmt } while ( bool );
-      | break;
-      | id (args) { stmt }
-      | return bool;
-      | block
-var -> var | id
-     | var [ bool ] | id
-func_call -> id ( args );
-func_decl -> def id ( args ) -> type: block
-return_stmt -> return expr;
-assign -> id: type = expression;
-id -> [a-zA-Z-Z0-9]+ num -> [0-9]
-args -> expr | null
 
+```python
+stmt → var = bool;
+        | assign | func\_decl | return_stmt
+        | if ( bool ): { stmt }
+        | if ( bool ): { stmt } else: { stmt }
+        | if ( bool ): { stmt } else:  stmt 
+        | if ( bool ): { stmt } elif (bool): { stmt }
+        | for (var → num; bool; var → var +- num): { stmt }
+        | while ( bool ): { stmt \}
+        | do \{ stmt } while ( bool );
+        | break;}
+        | id (args) { stmt }
+        | return bool;
+        | block}
+var → var | id
+var → var [ bool ] | id
+func_call → id ( args );
+func_decl → def id ( args ) → type: block 
+return_stmt → return expr;
+assign → id: type = expression;
+id → [a-zA-Z-Z0-9]+
+num → [0-9]
+args → expr  | null
 ```
-
 
 
 ### TODO: Regra de Produção para Expressões
-```
-bool -> join || join
-join -> equality && equality
-equality -> rel ( == | != ) rel
-rel -> expr { (< | <= | >= | >) expr }
-expr -> term ( + | - ) term
-term -> unary ( * | / ) unary
-unary -> ( ! | - ) unary | factor
-factor -> ( bool ) | loc | num | real | true | false
-loc -> [a-zA-Z-Z0-9]+ num -> [0-9]
-real -> [0-9].[0-9]
-true -> true
-false -> false
-```
-
-| Produção    | Regra de Produção                        |
-|-------------|------------------------------------------|
-| bin_op      | expr + expr                              |
-|             | expr - expr                              |
-|             | expr * expr                              |
-|             | expr / expr                              |
-|             | expr == expr                             |
-|             | expr != expr                             |
-|             | expr < expr                              |
-|             | expr <= expr                             |
-|             | expr > expr                              |
-|             | expr >= expr                             |
-
-| Produção    | Regra de Produção                        |
-|-------------|------------------------------------------|
-| None        | None -> null                             |
-| FEXP        | FEXP -> down DIFITSF                     |
-|             | FEXP -> up DIFITSF                       |
-| letters [A-Z] | letters [A-Z] ->                       |
-| DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
-|             | DIFITSF -> None                          |
-|             | DIFITSF -> FEXP                          |
-| DIGITS      | DIGITS -> -+[0-9]                       |
-|             | DIGITS -> num [0-9]                      |
-| int         | int -> real                               |
-| float16     | float16 -> natural number                |
-| bool        | bool -> [0-1] ->                         |
-| down        | down -> -     #45 in ascii               |
-| up          | up -> +       #43 in ascii               |
+bool	→	join \ || \ join
+join	→	equality \ \&\& \ equality
+equality	→	rel ( == | != ) rel 
+rel	→	expr { (< | <= | >= | >) expr }
+expr	→	term (+ | -) term 
+term	→	unary (* | / ) unary 
+unary	→	(! | -) unary | factor
+factor	→	(bool) | loc | num | real | true | false
 
 
-
+| Produção   | Regra de Produção                      |
+|------------|----------------------------------------|
+| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
+|            | None -> null                            | 
+|            | FEXP -> down DIFITSF                    |
+|            | FEXP -> up DIFITSF                      |
+|            | letters [A-Z] ->                        | # 65 to 122 in ascii 
+|            | DIFITSF -> DIGITSF DIGITS               |
+|            |  DIFITSF ->  None                       |
+|            |  DIFITSF ->  FEXP                       |
+|            | DIGITS -> -+[0-9]                       |
+|            | num [0 - 9]                             |
+|            | int -> real                             |
+|            | float16 -> natural number               |
+|            | bool -> [0-1] ->                        | # 0 to 1 in ascii
+|            | down -> -                               | #45 in ascii 
+|            | up -> +                                 | # 43 in ascii
 
 ### TODO: Tratamento dos numeros e letras
 
 
 ### TODO: Comunicação com Hardware
-
-
+pin(nome, pino, direcao)
+write(nome, valor)
+read(nome)
 
 ## Exemplos de Código
 
@@ -242,14 +222,4 @@ def main() -> int: {
     return 0;
 }
 
-```
-
-## Documentação
-
-TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
-
-```Python
-pin(nome, pino, direcao)
-write(nome, valor)
-read(nome)
 ```
