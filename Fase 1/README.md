@@ -22,21 +22,24 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 **Raspberry Pi 3 Model B**
 
--Processador Broadcom BCM2837 64bit ARMv8 Cortex-A53 Quad-Core
--Clock 1.2 GHz
--Memória RAM: 1GB
--Adaptador Wifi 802.11n integrado (trabalha na frequência de 2.4 Ghz)
--Bluetooth 4.1 BLE integrado
--Conector de vídeo HDMI
--4 portas USB 2.0
--Conector Ethernet
--Interface para câmera (CSI)
--Interface para display (DSI)
--Slot para cartão microSD
--Conector de áudio e vídeo
--GPIO de 40 pinos
--Número de homologação Anatel: 04908-17-10629
--Dimensões: 85 x 56 x 17mm
+- Processador Broadcom BCM2837 64bit ARMv8 Cortex-A53 Quad-Core
+- Clock 1.2 GHz
+- Memória RAM: 1GB
+- Adaptador Wifi 802.11n integrado (trabalha na frequência de 2.4 Ghz)
+- Bluetooth 4.1 BLE integrado
+- Conector de vídeo HDMI
+- 4 portas USB 2.0
+- Conector Ethernet
+- Interface para câmera (CSI)
+- Interface para display (DSI)
+- Slot para cartão microSD
+- Conector de áudio e vídeo
+- GPIO de 40 pinos
+- Número de homologação Anatel: 04908-17-10629
+- Dimensões: 85 x 56 x 17mm
+- Cartão SD de 16GB
+- Sistema Operacional: Raspbian
+
 
 
 ## Apresentação da Linguagem
