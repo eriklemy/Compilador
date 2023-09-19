@@ -52,8 +52,7 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
-### Regra de Produção        
-
+### Regra de Produção                 
 $program \rightarrow block$
 $block \rightarrow \{ decls\ stmts \}$
 $decls \rightarrow decls\ decl\ |\ null$
@@ -92,49 +91,51 @@ O lexema básico da linguagem é composto por:
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
+```
+stmt -> var = bool
+      | assign
+      | func_decl
+      | return_stmt
+      | if ( bool ): { stmt }
+      | if ( bool ): { stmt } else: { stmt }
+      | if ( bool ): { stmt } else: stmt
+      | if ( bool ): { stmt } elif (bool): { stmt }
+      | for (var -> num; bool; var -> var + num): { stmt }
+      | while ( bool ): { stmt }
+      | do { stmt } while ( bool );
+      | break;
+      | id (args) { stmt }
+      | return bool;
+      | block
+var -> var | id
+     | var [ bool ] | id
+func_call -> id ( args );
+func_decl -> def id ( args ) -> type: block
+return_stmt -> return expr;
+assign -> id: type = expression;
+id -> [a-zA-Z-Z0-9]+ num -> [0-9]
+args -> expr | null
 
-```python
-stmt → var = bool;
-        | assign | func\_decl | return_stmt
-        | if ( bool ): { stmt }
-        | if ( bool ): { stmt } else: { stmt }
-        | if ( bool ): { stmt } else:  stmt 
-        | if ( bool ): { stmt } elif (bool): { stmt }
-        | for (var → num; bool; var → var +- num): { stmt }
-        | while ( bool ): { stmt \}
-        | do \{ stmt } while ( bool );
-        | break;}
-        | id (args) { stmt }
-        | return bool;
-        | block}
-var → var | id
-var → var [ bool ] | id
-func_call → id ( args );
-func_decl → def id ( args ) → type: block 
-return_stmt → return expr;
-assign → id: type = expression;
-id → [a-zA-Z-Z0-9]+
-num → [0-9]
-args → expr  | null
 ```
 
 
+
 ### TODO: Regra de Produção para Expressões
-bool	→	join \ || \ join
-join	→	equality \ \&\& \ equality
-equality	→	rel ( == | != ) rel 
-rel	→	expr { (< | <= | >= | >) expr }
-expr	→	term (+ | -) term 
-term	→	unary (* | / ) unary 
-unary	→	(! | -) unary | factor
-factor	→	(bool) | loc | num | real | true | false
+```
+bool -> join || join
+join -> equality && equality
+equality -> rel ( == | != ) rel
+rel -> expr { (< | <= | >= | >) expr }
+expr -> term ( + | - ) term
+term -> unary ( * | / ) unary
+unary -> ( ! | - ) unary | factor
+factor -> ( bool ) | loc | num | real | true | false
+loc -> [a-zA-Z-Z0-9]+ num -> [0-9]
+real -> [0-9].[0-9]
+true -> true
+false -> false
+```
 
-
-<<<<<<< HEAD
-| Produção   | Regra de Produção                      |
-|------------|----------------------------------------|
-| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
-=======
 | Produção    | Regra de Produção                        |
 |-------------|------------------------------------------|
 | bin_op      | expr + expr                              |
@@ -147,6 +148,9 @@ factor	→	(bool) | loc | num | real | true | false
 |             | expr <= expr                             |
 |             | expr > expr                              |
 |             | expr >= expr                             |
+
+| Produção    | Regra de Produção                        |
+|-------------|------------------------------------------|
 | None        | None -> null                             |
 | FEXP        | FEXP -> down DIFITSF                     |
 |             | FEXP -> up DIFITSF                       |
@@ -162,19 +166,15 @@ factor	→	(bool) | loc | num | real | true | false
 | down        | down -> -     #45 in ascii               |
 | up          | up -> +       #43 in ascii               |
 
-```
 
-
->>>>>>> 778d390105b102e53433f90b99348d1edf579133
 
 
 ### TODO: Tratamento dos numeros e letras
 
 
 ### TODO: Comunicação com Hardware
-pin(nome, pino, direcao)
-write(nome, valor)
-read(nome)
+
+
 
 ## Exemplos de Código
 
@@ -242,4 +242,14 @@ def main() -> int: {
     return 0;
 }
 
+```
+
+## Documentação
+
+TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
+
+```Python
+pin(nome, pino, direcao)
+write(nome, valor)
+read(nome)
 ```
