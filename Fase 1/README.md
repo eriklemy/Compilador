@@ -92,28 +92,30 @@ O lexema básico da linguagem é composto por:
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
 ```
-$stmt \rightarrow var = bool;$
-$\;\;\;\;\;\;\;\;\;\;\;\;\;\ |\ assign\ |\ func\_decl\ |\ return\_stmt$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} else: \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} else: \ stmt }$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| if ( bool ): \{ stmt \} elif (bool): \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| for (var → num; bool; var → var +- num): \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| while ( bool ): \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| do \{ stmt \} while ( bool );}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| break;}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| id (args) \{ stmt \}}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| return bool;}$
-$\text{ \;\;\;\;\;\;\;\;\;\;\;\;\;| block}$
-$var \rightarrow \text{var | id}$
-$var \rightarrow \text{var [ bool ] | id}$
-$func\_call \rightarrow id\ ( args );$
-$func\_decl \rightarrow def\ id\ ( args ) \rightarrow type:\ block $
-$return_stmt \rightarrow return \ expr;$
-$assign \rightarrow id:\ type\ =\ expression;$
-$id \rightarrow$ [a-zA-Z-Z0-9]+
-$num \rightarrow$ [0-9]
-$args \rightarrow expr \ |\ null$
+stmt -> var = bool
+      | assign
+      | func_decl
+      | return_stmt
+      | if ( bool ): { stmt }
+      | if ( bool ): { stmt } else: { stmt }
+      | if ( bool ): { stmt } else: stmt
+      | if ( bool ): { stmt } elif (bool): { stmt }
+      | for (var -> num; bool; var -> var + num): { stmt }
+      | while ( bool ): { stmt }
+      | do { stmt } while ( bool );
+      | break;
+      | id (args) { stmt }
+      | return bool;
+      | block
+var -> var | id
+     | var [ bool ] | id
+func_call -> id ( args );
+func_decl -> def id ( args ) -> type: block
+return_stmt -> return expr;
+assign -> id: type = expression;
+id -> [a-zA-Z-Z0-9]+ num -> [0-9]
+args -> expr | null
+
 ```
 
 
