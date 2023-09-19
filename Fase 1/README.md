@@ -76,6 +76,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 
 O lexema básico da linguagem é composto por:
 
+```
 stmt -> var = bool ;
             | if ( bool ) { stmt }
             | if ( bool ) { stmt } else { stmt }
@@ -90,6 +91,7 @@ stmt -> var = bool ;
 var -> var | id
 var -> var [ bool ] | id
 func_call -> id(args);
+```
 
 - **Identificador**: uma sequência de letras, números e sublinhados, começando com uma letra.
 - **Numérico**: um número inteiro ou de ponto flutuante.
