@@ -8,15 +8,15 @@ A Fase 1 deste projeto tem como objetivo principal a criação de uma linguagem 
 
 A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
-- [] Estrutura do Programa: Um programa na linguagem consiste em um bloco de declarações definidas.
+- [x] Estrutura do Programa: Um programa na linguagem consiste em um bloco de declarações definidas.
 
-- [] Tipos Básicos: A linguagem deve definir tipos básicos para representar dados, incluindo inteiros e números de ponto flutuante de acordo com o padrão IEEE-754 de 16 bits.
+- [x] Tipos Básicos: A linguagem deve definir tipos básicos para representar dados, incluindo inteiros e números de ponto flutuante de acordo com o padrão IEEE-754 de 16 bits.
 
-- [] Expressões e Operadores: Deve ser implementada a precedência de operadores e associatividade corretas em expressões matemáticas. Use não-terminais para definir níveis de precedência e um não-terminal "factor" para tratar expressões entre parênteses, identificadores, referências de arranjos e constantes.
+- [x] Expressões e Operadores: Deve ser implementada a precedência de operadores e associatividade corretas em expressões matemáticas. Use não-terminais para definir níveis de precedência e um não-terminal "factor" para tratar expressões entre parênteses, identificadores, referências de arranjos e constantes.
 
 - [x] Tipos Estáticos: A linguagem deve ser de tipos estáticos, ou seja, os tipos de variáveis, valores e expressões precisam ser explicitamente definidos no código.
 
-- [] Interção com Hardware: É necessário definir regras de produção para interação com o hardware, permitindo ler e escrever em pinos do microcomputador, portas seriais, e em componentes opcionais, como conversores digital-analógico e analógico-digital.
+- [x] Interção com Hardware: É necessário definir regras de produção para interação com o hardware, permitindo ler e escrever em pinos do microcomputador, portas seriais, e em componentes opcionais, como conversores digital-analógico e analógico-digital.
 
 ### Fase 1
 
@@ -52,16 +52,17 @@ TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as pri
 
 Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
 
-### Regra de Produção        
-
-$program \rightarrow block$
-$block \rightarrow \{ decls\ stmts \}$
-$decls \rightarrow decls\ decl\ |\ null$
-$decl \rightarrow type\ id;$
-$params \rightarrow param,\ params\ |\ params\ |\ null$
-$param \rightarrow type\ id$
-$type \rightarrow int\ |\ float16\ |\ bool$
-$stmts \rightarrow stmts\ stmt\ |\ null$
+### Regra de Produção   
+```python              
+program -> block
+block -> { decls stmts }
+decls -> decls decl | null
+decl -> type id;
+params -> param, params | params | null
+param -> type id
+type -> int | float16 | bool
+stmts -> stmts stmt | null
+```
 
 As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
 
@@ -92,69 +93,88 @@ O lexema básico da linguagem é composto por:
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
-
 ```python
-stmt → var = bool;
-        | assign | func\_decl | return_stmt
-        | if ( bool ): { stmt }
-        | if ( bool ): { stmt } else: { stmt }
-        | if ( bool ): { stmt } else:  stmt 
-        | if ( bool ): { stmt } elif (bool): { stmt }
-        | for (var → num; bool; var → var +- num): { stmt }
-        | while ( bool ): { stmt \}
-        | do \{ stmt } while ( bool );
-        | break;}
-        | id (args) { stmt }
-        | return bool;
-        | block}
-var → var | id
-var → var [ bool ] | id
-func_call → id ( args );
-func_decl → def id ( args ) → type: block 
-return_stmt → return expr;
-assign → id: type = expression;
-id → [a-zA-Z-Z0-9]+
-num → [0-9]
-args → expr  | null
+stmt -> var = bool
+      | assign
+      | func_decl
+      | return_stmt
+      | if ( bool ): { stmt }
+      | if ( bool ): { stmt } else: { stmt }
+      | if ( bool ): { stmt } else: stmt
+      | if ( bool ): { stmt } elif (bool): { stmt }
+      | for (var -> num; bool; var -> var + num): { stmt }
+      | while ( bool ): { stmt }
+      | do { stmt } while ( bool );
+      | break;
+      | id (args) { stmt }
+      | return bool;
+      | block
+var -> var | id
+     | var [ bool ] | id
+func_call -> id ( args );
+func_decl -> def id ( args ) -> type: block
+return_stmt -> return expr;
+assign -> id: type = expression;
+id -> [a-zA-Z-Z0-9]+ num -> [0-9]
+args -> expr | null
 ```
 
 
+
 ### TODO: Regra de Produção para Expressões
-bool	→	join \ || \ join
-join	→	equality \ \&\& \ equality
-equality	→	rel ( == | != ) rel 
-rel	→	expr { (< | <= | >= | >) expr }
-expr	→	term (+ | -) term 
-term	→	unary (* | / ) unary 
-unary	→	(! | -) unary | factor
-factor	→	(bool) | loc | num | real | true | false
+```
+bool -> join || join
+join -> equality && equality
+equality -> rel ( == | != ) rel
+rel -> expr { (< | <= | >= | >) expr }
+expr -> term ( + | - ) term
+term -> unary ( * | / ) unary
+unary -> ( ! | - ) unary | factor
+factor -> ( bool ) | loc | num | real | true | false
+loc -> [a-zA-Z-Z0-9]+ num -> [0-9]
+real -> [0-9].[0-9]
+true -> true
+false -> false
+```
 
+| Produção    | Regra de Produção                        |
+|-------------|------------------------------------------|
+| bin_op      | expr + expr                              |
+|             | expr - expr                              |
+|             | expr * expr                              |
+|             | expr / expr                              |
+|             | expr == expr                             |
+|             | expr != expr                             |
+|             | expr < expr                              |
+|             | expr <= expr                             |
+|             | expr > expr                              |
+|             | expr >= expr                             |
 
-| Produção   | Regra de Produção                      |
-|------------|----------------------------------------|
-| bin_op     | expr + expr \| expr - expr \| expr * expr \| expr / expr \| expr == expr \| expr != expr \| expr < expr \| expr <= expr \| expr > expr \| expr >= expr |
-|            | None -> null                            | 
-|            | FEXP -> down DIFITSF                    |
-|            | FEXP -> up DIFITSF                      |
-|            | letters [A-Z] ->                        | # 65 to 122 in ascii 
-|            | DIFITSF -> DIGITSF DIGITS               |
-|            |  DIFITSF ->  None                       |
-|            |  DIFITSF ->  FEXP                       |
-|            | DIGITS -> -+[0-9]                       |
-|            | num [0 - 9]                             |
-|            | int -> real                             |
-|            | float16 -> natural number               |
-|            | bool -> [0-1] ->                        | # 0 to 1 in ascii
-|            | down -> -                               | #45 in ascii 
-|            | up -> +                                 | # 43 in ascii
 
 ### TODO: Tratamento dos numeros e letras
-
+| Produção    | Regra de Produção                        |
+|-------------|------------------------------------------|
+| None        | None -> null                             |
+| FEXP        | FEXP -> down DIFITSF                     |
+|             | FEXP -> up DIFITSF                       |
+| letters [A-Z] | letters [A-Z] ->                       |
+| DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
+|             | DIFITSF -> None                          |
+|             | DIFITSF -> FEXP                          |
+| DIGITS      | DIGITS -> -+[0-9]                       |
+|             | DIGITS -> num [0-9]                      |
+| int         | int -> real                               |
+| float16     | float16 -> natural number                |
+| bool        | bool -> [0-1] ->                         |
+| down        | down -> -     #45 in ascii               |
+| up          | up -> +       #43 in ascii               |
 
 ### TODO: Comunicação com Hardware
+```Python
 pin(nome, pino, direcao)
 write(nome, valor)
 read(nome)
+```
 
 ## Exemplos de Código
 
@@ -223,3 +243,7 @@ def main() -> int: {
 }
 
 ```
+
+## Documentação
+
+TODO: **Documentação**: Forneça documentação completa da linguagem, incluindo a gramática, a descrição de tipos de dados, operadores e funções incorporadas (se houver).
