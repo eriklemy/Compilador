@@ -60,6 +60,10 @@ decls -> decls decl | null
 decl -> type id;
 params -> param, params | params | null
 param -> type id
+args -> arglist | null
+arglist -> arglist, bool | bool 
+        | arglist, num | num 
+        | arglist, id | id
 type -> int | float16 | bool
 stmts -> stmts stmt | null
 ```
@@ -115,11 +119,12 @@ stmt -> var = bool
 var -> var | id
      | var [ bool ] | id
 func_call -> id ( args );
-func_decl -> def id ( args ) -> type: block
+func_decl -> def id ( params ) -> type: block
 return_stmt -> return expr;
-assign -> id: type = expression;
+assign -> id: type = expr | var;
 id -> [a-zA-Z-Z0-9]+ 
-num -> [0-9]
+num -> [0-9]+
+float16 ->  
 args -> expr | null
 ```
 
@@ -132,8 +137,8 @@ rel -> expr (< | <= | >= | >) expr
 expr -> term ( + | - ) term
 term -> unary ( * | / ) unary
 unary -> ( ! | - ) unary | factor
-factor -> ( bool ) | loc | num | real | true | false
-loc -> [a-zA-Z-Z0-9]+ 
+factor -> ( bool ) | var | num | real | true | false
+var -> [a-zA-Z-Z0-9]+ 
 num -> [0-9]
 real -> [0-9].[0-9]
 bin_op -> expr + expr     
