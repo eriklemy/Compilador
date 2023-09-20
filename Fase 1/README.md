@@ -210,7 +210,7 @@ Apresentação dos exemplos de código que demonstrem as funcionalidades da ling
 
 
 ### Exemplo *.Cpy:
-```c++
+```python
 // Declara uma variável inteira
 numero: int = 10;
 led_on: int = 1;
@@ -234,7 +234,7 @@ def area_circulo(raio: float16) -> float16: {
 ```
 
 #### Interação com Hardware
-```c++
+```python
 // Declara um pino como saída
 pin(led, GPIO_2, GPIO_OUT);
 
