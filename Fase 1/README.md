@@ -61,6 +61,7 @@ decl -> type id;
 params -> param, params | params | null
 param -> type id
 args -> arglist | null
+      | expr | null
 arglist -> arglist, bool | bool 
         | arglist, num | num 
         | arglist, id | id
@@ -122,10 +123,6 @@ func_call -> id ( args );
 func_decl -> def id ( params ) -> type: block
 return_stmt -> return expr;
 assign -> id: type = expr | var;
-id -> [a-zA-Z-Z0-9]+ 
-num -> [0-9]+
-float16 ->  
-args -> expr | null
 ```
 
 ### Regra de Produção para Expressões
@@ -138,9 +135,6 @@ expr -> term ( + | - ) term
 term -> unary ( * | / ) unary
 unary -> ( ! | - ) unary | factor
 factor -> ( bool ) | var | num | real | true | false
-var -> [a-zA-Z-Z0-9]+ 
-num -> [0-9]
-real -> [0-9].[0-9]
 bin_op -> expr + expr     
        | expr - expr  
        | expr * expr  
@@ -154,6 +148,16 @@ bin_op -> expr + expr
 ```
 
 ### Tratamento dos numeros e letras
+
+```python
+id -> [a-zA-Z_][a-zA-Z_0-9]* 
+var -> [a-zA-Z-Z0-9]+ 
+num -> [0-9]+
+real -> [0-9].[0-9]
+int -> num
+float16 ->  real
+bool -> true | false
+```
 
 | Produção    | Regra de Produção                        |
 |-------------|------------------------------------------|
