@@ -41,18 +41,14 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 - Sistema Operacional: Raspbian
 
 
-
 ## Apresentação da Linguagem
 
 Estética: A linguagem é baseada na sintaxe de Python, com algumas características de C, como a declaração de tipos de dados e necessidade de uso do ";".
 
 TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as principais características da linguagem, com ênfase nas regras de produção criadas para interação com o hardware.
 
-### TODO: Bloco de Declarações
+### Bloco de Declarações
 
-Claro, aqui está a sintaxe da linguagem organizada em uma tabela para Markdown:
-
-### Regra de Produção   
 ```python              
 program -> block
 block -> { decls stmts }
@@ -86,7 +82,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
 
 5. **Blocos de Função**:
-   - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
+   - A produçao `block` é usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 
 ### Lexema Basico
@@ -98,6 +94,7 @@ O lexema básico da linguagem é composto por:
 - **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
 - **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
 
+### Regra de Produção 
 ```python
 stmt -> var = bool
       | assign
@@ -124,6 +121,29 @@ func_decl -> def id ( params ) -> type: block
 return_stmt -> return expr;
 assign -> id: type = expr | var;
 ```
+
+As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
+
+1. **Adição de Funções e Retorno**:
+   - A produção `func_decl` foi introduzida para permitir a declaração de funções com parâmetros e tipo de retorno.
+   - A produção `return_stmt` foi introduzida para representar a possibilidade de retorno dentro de um bloco de estado.
+   - A produção `func_call` foi introduzida para representar a possibilidade da chamada de uma funçao dentro de um bloco de stmt.
+
+2. **Tipo Básico**:
+   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool`.
+
+3. **Identificadores**:
+   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos.
+
+4. **Outras Instruções**:
+   - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
+   - A produção `assign` foi introduzida para representar a atribuicao de valor a uma `decl` dado pelo nome `id` seguido do `type` após `:` e a `expr` ou valor a ser atribuido.
+
+5. **Blocos de Função**:
+   - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
+
+
+
 
 ### Regra de Produção para Expressões
 ```
@@ -178,15 +198,22 @@ bool -> true | false
 
 
 ### Comunicação com Hardware
+
+Para comunicaçao com o hardware foram criadas e adicionadas as seguintes regras ao lexema basico:
 ```Python
 pin(nome, pino, direcao)
 write(nome, valor)
 read(nome)
+
+stmt -> id (args) { stmt }
+      | pin(id, num, id)
+      | read(id)
+      | write(id, bool)
 ```
 
 ## Exemplos de Código
 
-TODO: **Exemplos de Código**: Apresente pelo menos três exemplos de código que demonstrem todas as funcionalidades da linguagem criada. Esses exemplos devem abranger diferentes aspectos da linguagem, como declaração de variáveis, expressões matemáticas, e interação com hardware.
+Apresentação dos exemplos de código que demonstrem as funcionalidades da linguagem criada. Esses exemplos abranger diferentes aspectos da linguagem, como declaração de variáveis, expressões matemáticas, e interação com hardware.
 
 
 ### Exemplo *.Cpy:
