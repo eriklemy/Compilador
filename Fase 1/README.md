@@ -138,7 +138,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 
 
 ### Regra de Produção para Expressões
-```
+```python
 bool -> join || join
 join -> equality && equality
 equality -> rel ( == | != ) rel
