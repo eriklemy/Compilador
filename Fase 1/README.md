@@ -192,7 +192,8 @@ bool -> true | false
 ### Comunicação com Hardware
 
 Para comunicaçao com o hardware foram criadas e adicionadas as seguintes regras ao lexema basico:
-```Python
+
+```python
 pin(nome, pino, direcao)
 write(nome, valor)
 read(nome)
@@ -209,7 +210,7 @@ Apresentação dos exemplos de código que demonstrem as funcionalidades da ling
 
 
 ### Exemplo *.Cpy:
-```C++
+```c++
 // Declara uma variável inteira
 numero: int = 10;
 led_on: int = 1;
@@ -233,7 +234,7 @@ def area_circulo(raio: float16) -> float16: {
 ```
 
 #### Interação com Hardware
-```C++
+```c++
 // Declara um pino como saída
 pin(led, GPIO_2, GPIO_OUT);
 
