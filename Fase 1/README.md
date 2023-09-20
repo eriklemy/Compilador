@@ -87,14 +87,6 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 
 ### Lexema Basico
 
-O lexema básico da linguagem é composto por:
-
-- **Identificador**: uma sequência de letras, números e sublinhados, começando com uma letra.
-- **Numérico**: um número inteiro ou de ponto flutuante.
-- **Operador**: um símbolo que representa uma operação matemática, relacional ou lógica.
-- **Delimitador**: um símbolo que separa tokens ou delimita um bloco de código.
-
-### Regra de Produção 
 ```python
 stmt -> var = bool
       | assign
