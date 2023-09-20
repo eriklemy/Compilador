@@ -166,8 +166,8 @@ bin_op -> expr + expr
 |             | DIFITSF -> FEXP                          |
 | DIGITS      | DIGITS -> -+[0-9]                        |
 |             | DIGITS -> num [0-9]                      |
-| int         | int -> real                              |
-| float16     | float16 -> natural number                |
+| int         | int -> inteiro                           |
+| float16     | float16 -> real                          |
 | bool        | bool -> [0-1] ->                         |
 | down        | down -> -     #45 in ascii               |
 | up          | up -> +       #43 in ascii               |
