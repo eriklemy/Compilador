@@ -72,19 +72,19 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - A produção `func_decl` foi introduzida para permitir a declaração de funções com parâmetros e tipo de retorno.
    - A produção `params` foi adicionada para definir a lista de parâmetros em uma função.
    - A produção `param` permite a definição de parâmetros de função com seu tipo e nome.
+   - A produção `func_call` foi introduzida para representar a possibilidade da chamada de uma funçao dentro de um bloco de stmt.
 
 2. **Tipo Básico**:
-   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool`.
+   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool` e pode ser nulo sem retorno.
 
 3. **Identificadores**:
-   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos.
+   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos, porem serve para representar entidades no código, como funções.
 
 4. **Outras Instruções**:
    - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
 
 5. **Blocos de Função**:
-   - A produçao `block` é usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
-
+   - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 ### Lexema Basico
 
@@ -116,24 +116,20 @@ assign -> var: type = expr | var [ bool ] = expr;
 
 As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
 
-1. **Adição de Funções e Retorno**:
-   - A produção `func_decl` foi introduzida para permitir a declaração de funções com parâmetros e tipo de retorno.
+1. **Adição de Retorno**:
    - A produção `return_stmt` foi introduzida para representar a possibilidade de retorno dentro de um bloco de estado.
-   - A produção `func_call` foi introduzida para representar a possibilidade da chamada de uma funçao dentro de um bloco de stmt.
 
-2. **Tipo Básico**:
-   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool`.
-
+2. **Comunicacao com hardware**:
+   - A instrução `pin(id, num, id)` foi adicionada e permite definir o valor de um pino digital.
+   - A instrução `write(id, bool)` foi adicionada e permite escrever um valor booleano em um pino digital.
+   - A instrução `delay(num)` foi introduzida e permite definir um tempo de interrupção no hardare ou seja um tempo de delay na execução.
+   
 3. **Identificadores**:
-   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos, porem serve para representar entidades no código, como funções.
    - A produção `var` foi criada para representar uma variável, que é um tipo específico de entidade que pode armazenar e conter valores. Variáveis têm um nome (representado por um `id`) e um tipo de dados (representado por `type` na gramática). `var` é usado para definir e trabalhar com variáveis dentro das regras gramaticais.
 
 4. **Outras Instruções**:
    - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
    - A produção `assign` foi introduzida para representar a atribuicao de valor a uma `decl` dado pelo nome `var` seguido do `type` após `:` e a `expr` ou valor a ser atribuido.
-
-5. **Blocos de Função**:
-   - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
 
 
 ### Regra de Produção para Expressões
