@@ -106,6 +106,7 @@ stmt -> var = bool
       | pin(id, num, id)
       | write(id, bool)
       | read(id)
+      | delay(num)
 var -> var | id
      | var [ bool ] | id
 func_call -> id ( args );
@@ -133,8 +134,6 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 
 5. **Blocos de Função**:
    - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
-
-
 
 
 ### Regra de Produção para Expressões
@@ -197,11 +196,13 @@ Para comunicaçao com o hardware foram criadas e adicionadas as seguintes regras
 pin(nome, pino, direcao)
 write(nome, valor)
 read(nome)
+delay(ms)
 
 stmt -> id (args) { stmt }
       | pin(id, num, id)
       | read(id)
       | write(id, bool)
+      | delay(num)
 ```
 
 ## Exemplos de Código
@@ -262,11 +263,12 @@ def led(estado: int) -> void: {
 }
 
 def main() -> int: {
-    if (read(led) == 0): {
-        led(1);
+    while (true): {
+        if (read(led) == 0): {
+            led(1);
+        }
+        else: led(0);
     }
-    else: led(0);
-
     return 0;
 }
 ```
