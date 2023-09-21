@@ -1,4 +1,26 @@
+"""
+    COMPILADORES - FASE 1
+        ANALISADOR LEXICO
+    
+    NOME: Erick Lemmy dos Santos Oliveira
+    NOME: Gabrielle Batista Garcia
+    NOME: Matheus Herman
+    NOME: Leandro Ricardo Guimarães
+    
+    PROF: Frank Alcantara
+"""
+
 import re
+import sys
+
+# Código-fonte de exemplo
+    source_code = """
+    numero: int = 10;
+    pi: float16 = 3.14159;
+    def somar(a: int, b: int) -> int: {
+        return a + b;
+    }
+"""
 
 # Defina padrões para identificadores, números inteiros e números de ponto flutuante
 identifier_pattern = r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -12,7 +34,7 @@ keywords = ['int', 'float16', 'bool', 'def', 'if', 'else', 'while', 'return', 't
 punctuation_symbols = [';', '{', '}', '(', ')', ',', '->', ':', '=', '==', '+', '-', '*', '/', '<', '>']
 
 # Função para analisar o código-fonte
-def analyze_source_code(source_code):
+def analyze_code(source_code):
     tokens = []
     lines = source_code.split('\n')
     line_number = 1
@@ -75,18 +97,19 @@ def analyze_source_code(source_code):
 
     return tokens
 
-# Código-fonte de exemplo
-source_code = """
-numero: int = 10;
-pi: float16 = 3.14159;
-def somar(a: int, b: int) -> int: {
-    return a + b;
-}
-"""
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(f"USO: python3 {sys.argv[0]} arquivo_de_codigo.cpy")
+        code = source_code
+    else:
+        cod = sys.argv[1]
+        # Leitura do código a partir de um arquivo
+        with open(cod, "r") as file:
+            code = file.read()
+            
+    # Chama a função de análise de código
+    tokens = analyze_code(code)
 
-# Chama a função de análise do código-fonte
-tokens = analyze_source_code(source_code)
-
-# Exibe os tokens encontrados
-for token in tokens:
-    print(token)
+    # Exibe os tokens encontrados
+    for token in tokens:
+        print(token)
