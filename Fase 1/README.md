@@ -268,6 +268,7 @@ def main() -> int: {
             led(1);
         }
         else: led(0);
+        delay(1000);
     }
     return 0;
 }
