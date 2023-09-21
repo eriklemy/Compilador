@@ -14,7 +14,7 @@ import re
 import sys
 
 # Código-fonte de exemplo
-    source_code = """
+source_code = """
     numero: int = 10;
     pi: float16 = 3.14159;
     def somar(a: int, b: int) -> int: {
