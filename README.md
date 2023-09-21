@@ -1,6 +1,6 @@
 # Projeto Disciplinar – Compilador - 2023 - 2
 
-Este é o README do Projeto Disciplinar de Compiladores para o ano de 2023, turma 2.
+Este é o repositorio do Projeto Disciplinar de Compiladores para o ano de 2023, turma 2.
 
 ## Equipe
 
