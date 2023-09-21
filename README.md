@@ -4,10 +4,10 @@ Este é o repositorio do Projeto Disciplinar de Compiladores para o ano de 2023,
 
 ## Equipe
 
-- Erick Lemmy dos Santos Oliveira
+- [Erick Lemmy dos Santos Oliveira](https://github.com/eriklemy/Compilador)
 - Gabrielle Batista Garcia
 - Leandro Ricardo Guimarães
-- Matheus Herman
+- [Matheus Herman](https://github.com/matheusherman/Projeto_Compilador#readme)
 
 ## Objetivo
 
