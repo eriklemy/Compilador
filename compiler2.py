@@ -1,3 +1,4 @@
+import sys
 import ply.lex as lex
 import ply.yacc as yacc
 
@@ -22,8 +23,6 @@ tokens = (
     'ASSIGN',
     'PLUS',    # Adicione o token PLUS
     'MINUS',   # Adicione o token MINUS
-    'PRINT',
-    'STRING',
 )
 
 # Regras para tokens simples
@@ -38,7 +37,7 @@ t_ARROW = r'\->'
 t_ASSIGN = r'\='
 t_PLUS = r'\+'
 t_MINUS = r'\-'
-t_PRINT = r'print'
+
 
 # Regra para identificadores
 def t_ID(t):
@@ -103,9 +102,11 @@ def p_declaration(p):
     '''
     declaration : ID COLON ID ASSIGN expression SEMICOLON
     '''
+    
 precedence = (
     ('left', 'PLUS', 'MINUS'),
 )
+
 def p_expression(p):
     '''
     expression : ID
@@ -166,51 +167,48 @@ def p_empty(p):
     '''
     empty :
     '''
-def p_statement_print(p):
-    '''
-    statement : PRINT LPAREN STRING RPAREN SEMICOLON
-    '''
-    print(p[3])  # Imprime o conteúdo da string entre parênteses
-
-def p_statement_print_format(p):
-    '''
-    statement : PRINT LPAREN STRING COMMA expression COMMA expression RPAREN SEMICOLON
-    '''
-    formatted_string = p[3] % (p[5], p[7])
-    print(formatted_string)
 
 # Função para capturar erros de sintaxe
 def p_error(p):
     print(f"Erro de sintaxe na linha {p.lineno}: token '{p.value}'")
 
-# Crie um analisador léxico e um analisador sintático
-lexer = lex.lex()
-parser = yacc.yacc()
 
-# Código de teste
-code = '''
-// Declara uma variável booleana
-ligado: bool = true;
+if __name__ == "__main__":
+    # if len(sys.argv) != 2:
+    #     print(f"USO: python3 {sys.argv[0]} arquivo_de_codigo.cpy")
+    # else:
+    #     cod = sys.argv[1]
+    #     # Leitura do código a partir de um arquivo
+    #     with open(cod, "r") as file:
+    #         code = file.read()
 
-// Declara uma variável real
-num: int = 69;
-PI: float16 = 3.14159;
+        # Crie um analisador léxico e um analisador sintático
+        lexer = lex.lex()
+        parser = yacc.yacc()
+        
+        # Código de teste
+        code = '''
+        // Declara uma variável booleana
+        ligado: bool = true;
 
-def main() -> int: {
-    if (ligado) : {
-        return 1;
-    } else: {
-        return 0;
-    }
-    print("hello world");
-    // print("soma: %d", soma(2, 2));
-    return 1;
-}
+        // Declara uma variável real
+        num: int = 69;
+        PI: float16 = 3.14159;
 
-def soma(a: float16, b: float16) -> float16: {
-    return a + b;
-}
-'''
+        def main() -> int: {
+            if (ligado) : {
+                return 1;
+            } else: {
+                return 0;
+            }
+            return 0;
+        }
 
-result = parser.parse(code)
+        def soma(a: float16, b: float16) -> float16: {
+            return a + b;
+        }
+        '''
+        # Análise do código
+        result = parser.parse(code)
+        print("Analisado com sucesso!")
 

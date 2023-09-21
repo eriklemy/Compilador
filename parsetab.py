@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSARROW ASSIGN BOOL COLON COMMA DEF ELSE FLOAT16 ID IF INT LBRACE LPAREN MINUS PLUS PRINT RBRACE RETURN RPAREN SEMICOLON STRING\n    code : declarations functions\n    \n    declarations : declarations declaration\n                | empty\n    \n    declaration : ID COLON ID ASSIGN expression SEMICOLON\n    \n    expression : ID\n               | literal\n               | expression PLUS expression\n               | expression MINUS expression\n               | LPAREN expression RPAREN\n    \n    literal : FLOAT16\n            | INT\n            | BOOL\n    \n    functions : functions function\n              | empty\n    \n    function : DEF ID LPAREN args RPAREN ARROW ID COLON LBRACE statements RBRACE\n    \n    args : args_list\n         | empty\n    \n    args_list : args_list COMMA arg\n              | arg\n    \n    arg : ID COLON ID\n    \n    statements : statements statement\n               | empty\n    \n    statement : IF LPAREN expression RPAREN COLON LBRACE statements RBRACE ELSE COLON LBRACE statements RBRACE\n              | RETURN expression SEMICOLON\n    \n    empty :\n    \n    statement : PRINT LPAREN STRING RPAREN SEMICOLON\n    \n    statement : PRINT LPAREN STRING COMMA expression COMMA expression RPAREN SEMICOLON\n    '
+_lr_signature = 'leftPLUSMINUSARROW ASSIGN BOOL COLON COMMA DEF ELSE FLOAT16 ID IF INT LBRACE LPAREN MINUS PLUS RBRACE RETURN RPAREN SEMICOLON\n    code : declarations functions\n    \n    declarations : declarations declaration\n                | empty\n    \n    declaration : ID COLON ID ASSIGN expression SEMICOLON\n    \n    expression : ID\n               | literal\n               | expression PLUS expression\n               | expression MINUS expression\n               | LPAREN expression RPAREN\n    \n    literal : FLOAT16\n            | INT\n            | BOOL\n    \n    functions : functions function\n              | empty\n    \n    function : DEF ID LPAREN args RPAREN ARROW ID COLON LBRACE statements RBRACE\n    \n    args : args_list\n         | empty\n    \n    args_list : args_list COMMA arg\n              | arg\n    \n    arg : ID COLON ID\n    \n    statements : statements statement\n               | empty\n    \n    statement : IF LPAREN expression RPAREN COLON LBRACE statements RBRACE ELSE COLON LBRACE statements RBRACE\n              | RETURN expression SEMICOLON\n    \n    empty :\n    '
     
-_lr_action_items = {'ID':([0,2,3,5,9,10,13,14,23,27,29,30,31,32,35,48,50,58,63,],[-25,7,-3,-2,11,12,15,20,20,34,15,-4,20,20,40,20,20,20,20,]),'DEF':([0,2,3,4,5,6,8,30,45,],[-25,-25,-3,9,-2,-14,-13,-4,-15,]),'$end':([0,1,2,3,4,5,6,8,30,45,],[-25,0,-25,-3,-1,-2,-14,-13,-4,-15,]),'COLON':([7,15,40,56,68,],[10,27,41,59,70,]),'LPAREN':([11,14,23,31,32,47,48,49,50,58,63,],[13,23,23,23,23,50,23,52,23,23,23,]),'ASSIGN':([12,],[14,]),'RPAREN':([13,16,17,18,19,20,22,24,25,26,33,34,36,37,38,39,53,55,65,],[-25,28,-16,-17,-19,-5,-6,-10,-11,-12,39,-20,-18,-7,-8,-9,56,57,67,]),'FLOAT16':([14,23,31,32,48,50,58,63,],[24,24,24,24,24,24,24,24,]),'INT':([14,23,31,32,48,50,58,63,],[25,25,25,25,25,25,25,25,]),'BOOL':([14,23,31,32,48,50,58,63,],[26,26,26,26,26,26,26,26,]),'COMMA':([17,19,20,22,24,25,26,34,36,37,38,39,55,61,],[29,-19,-5,-6,-10,-11,-12,-20,-18,-7,-8,-9,58,63,]),'SEMICOLON':([20,21,22,24,25,26,37,38,39,51,57,67,],[-5,30,-6,-10,-11,-12,-7,-8,-9,54,60,69,]),'PLUS':([20,21,22,24,25,26,33,37,38,39,51,53,61,65,],[-5,31,-6,-10,-11,-12,31,-7,-8,-9,31,31,31,31,]),'MINUS':([20,21,22,24,25,26,33,37,38,39,51,53,61,65,],[-5,32,-6,-10,-11,-12,32,-7,-8,-9,32,32,32,32,]),'ARROW':([28,],[35,]),'LBRACE':([41,59,70,],[42,62,71,]),'RBRACE':([42,43,44,46,54,60,62,64,69,71,72,73,],[-25,45,-22,-21,-24,-26,-25,66,-27,-25,73,-23,]),'IF':([42,43,44,46,54,60,62,64,69,71,72,73,],[-25,47,-22,-21,-24,-26,-25,47,-27,-25,47,-23,]),'RETURN':([42,43,44,46,54,60,62,64,69,71,72,73,],[-25,48,-22,-21,-24,-26,-25,48,-27,-25,48,-23,]),'PRINT':([42,43,44,46,54,60,62,64,69,71,72,73,],[-25,49,-22,-21,-24,-26,-25,49,-27,-25,49,-23,]),'STRING':([52,],[55,]),'ELSE':([66,],[68,]),}
+_lr_action_items = {'ID':([0,2,3,5,9,10,13,14,23,27,29,30,31,32,35,48,49,],[-25,7,-3,-2,11,12,15,20,20,34,15,-4,20,20,40,20,20,]),'DEF':([0,2,3,4,5,6,8,30,45,],[-25,-25,-3,9,-2,-14,-13,-4,-15,]),'$end':([0,1,2,3,4,5,6,8,30,45,],[-25,0,-25,-3,-1,-2,-14,-13,-4,-15,]),'COLON':([7,15,40,53,58,],[10,27,41,54,59,]),'LPAREN':([11,14,23,31,32,47,48,49,],[13,23,23,23,23,49,23,23,]),'ASSIGN':([12,],[14,]),'RPAREN':([13,16,17,18,19,20,22,24,25,26,33,34,36,37,38,39,51,],[-25,28,-16,-17,-19,-5,-6,-10,-11,-12,39,-20,-18,-7,-8,-9,53,]),'FLOAT16':([14,23,31,32,48,49,],[24,24,24,24,24,24,]),'INT':([14,23,31,32,48,49,],[25,25,25,25,25,25,]),'BOOL':([14,23,31,32,48,49,],[26,26,26,26,26,26,]),'COMMA':([17,19,34,36,],[29,-19,-20,-18,]),'SEMICOLON':([20,21,22,24,25,26,37,38,39,50,],[-5,30,-6,-10,-11,-12,-7,-8,-9,52,]),'PLUS':([20,21,22,24,25,26,33,37,38,39,50,51,],[-5,31,-6,-10,-11,-12,31,-7,-8,-9,31,31,]),'MINUS':([20,21,22,24,25,26,33,37,38,39,50,51,],[-5,32,-6,-10,-11,-12,32,-7,-8,-9,32,32,]),'ARROW':([28,],[35,]),'LBRACE':([41,54,59,],[42,55,60,]),'RBRACE':([42,43,44,46,52,55,56,60,61,62,],[-25,45,-22,-21,-24,-25,57,-25,62,-23,]),'IF':([42,43,44,46,52,55,56,60,61,62,],[-25,47,-22,-21,-24,-25,47,-25,47,-23,]),'RETURN':([42,43,44,46,52,55,56,60,61,62,],[-25,48,-22,-21,-24,-25,48,-25,48,-23,]),'ELSE':([57,],[58,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'code':([0,],[1,]),'declarations':([0,],[2,]),'empty':([0,2,13,42,62,71,],[3,6,18,44,44,44,]),'functions':([2,],[4,]),'declaration':([2,],[5,]),'function':([4,],[8,]),'args':([13,],[16,]),'args_list':([13,],[17,]),'arg':([13,29,],[19,36,]),'expression':([14,23,31,32,48,50,58,63,],[21,33,37,38,51,53,61,65,]),'literal':([14,23,31,32,48,50,58,63,],[22,22,22,22,22,22,22,22,]),'statements':([42,62,71,],[43,64,72,]),'statement':([43,64,72,],[46,46,46,]),}
+_lr_goto_items = {'code':([0,],[1,]),'declarations':([0,],[2,]),'empty':([0,2,13,42,55,60,],[3,6,18,44,44,44,]),'functions':([2,],[4,]),'declaration':([2,],[5,]),'function':([4,],[8,]),'args':([13,],[16,]),'args_list':([13,],[17,]),'arg':([13,29,],[19,36,]),'expression':([14,23,31,32,48,49,],[21,33,37,38,50,51,]),'literal':([14,23,31,32,48,49,],[22,22,22,22,22,22,]),'statements':([42,55,60,],[43,56,61,]),'statement':([43,56,61,],[46,46,46,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,10 +27,10 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> code","S'",1,None,None,None),
-  ('code -> declarations functions','code',2,'p_code','compiler2.py',93),
-  ('declarations -> declarations declaration','declarations',2,'p_declarations','compiler2.py',98),
-  ('declarations -> empty','declarations',1,'p_declarations','compiler2.py',99),
-  ('declaration -> ID COLON ID ASSIGN expression SEMICOLON','declaration',6,'p_declaration','compiler2.py',104),
+  ('code -> declarations functions','code',2,'p_code','compiler2.py',91),
+  ('declarations -> declarations declaration','declarations',2,'p_declarations','compiler2.py',96),
+  ('declarations -> empty','declarations',1,'p_declarations','compiler2.py',97),
+  ('declaration -> ID COLON ID ASSIGN expression SEMICOLON','declaration',6,'p_declaration','compiler2.py',102),
   ('expression -> ID','expression',1,'p_expression','compiler2.py',111),
   ('expression -> literal','expression',1,'p_expression','compiler2.py',112),
   ('expression -> expression PLUS expression','expression',3,'p_expression','compiler2.py',113),
@@ -52,6 +52,4 @@ _lr_productions = [
   ('statement -> IF LPAREN expression RPAREN COLON LBRACE statements RBRACE ELSE COLON LBRACE statements RBRACE','statement',13,'p_statement','compiler2.py',161),
   ('statement -> RETURN expression SEMICOLON','statement',3,'p_statement','compiler2.py',162),
   ('empty -> <empty>','empty',0,'p_empty','compiler2.py',167),
-  ('statement -> PRINT LPAREN STRING RPAREN SEMICOLON','statement',5,'p_statement_print','compiler2.py',171),
-  ('statement -> PRINT LPAREN STRING COMMA expression COMMA expression RPAREN SEMICOLON','statement',9,'p_statement_print_format','compiler2.py',177),
 ]
