@@ -9,29 +9,34 @@
     
     PROF: Frank Alcantara
 """
-
 import re
 import sys
-
 # Código-fonte de exemplo
 source_code = """
-    numero: int = 10;
+    bool_var: bool = true;
+    var: bool = false;
+    // Este é um comentário
+    numero: int = 10; // Comentário após a linha de código
     pi: float16 = 3.14159;
     def somar(a: int, b: int) -> int: {
         return a + b;
     }
 """
 
-# Defina padrões para identificadores, números inteiros e números de ponto flutuante
+# Defina padrões para identificadores, números inteiros, números de ponto flutuante e literais booleanos
 identifier_pattern = r'[a-zA-Z_][a-zA-Z0-9_]*'
 integer_pattern = r'\d+'
 float_pattern = r'\d+\.\d+'
+boolean_pattern = r'\b(?:true|false)\b'  # Usamos \b para garantir que "true" e "false" sejam palavras completas
 
 # Lista de palavras-chave da linguagem
-keywords = ['int', 'float16', 'bool', 'def', 'if', 'else', 'while', 'return', 'true', 'false', 'void']
+keywords = ['int', 'float16', 'bool', 'def', 'if', 'else', 'while', 'return', 'void']
 
 # Símbolos de pontuação da linguagem
 punctuation_symbols = [';', '{', '}', '(', ')', ',', '->', ':', '=', '==', '+', '-', '*', '/', '<', '>']
+
+# Flag para indicar se estamos dentro de uma declaração de variável
+inside_declaration = False
 
 # Função para analisar o código-fonte
 def analyze_code(source_code):
@@ -41,18 +46,25 @@ def analyze_code(source_code):
 
     for line in lines:
         line = line.strip()
+
+        # Verifica se a linha contém um comentário "//" e remove-o
+        if '//' in line:
+            line = line.split('//')[0].strip()
+
         while line:
             match = None
 
-            # Verifica se a próxima parte da linha é uma palavra-chave
-            for keyword in keywords:
-                if line.startswith(keyword):
-                    tokens.append(('KEYWORD', keyword, line_number))
-                    line = line[len(keyword):].lstrip()
-                    match = True
-                    break
-
             if not match:
+                # Verifica se estamos dentro de uma declaração de variável (após ":")
+                if inside_declaration:
+                    # Verifica se a próxima parte da linha é um literal booleano
+                    match = re.match(boolean_pattern, line)
+                    if match:
+                        boolean_literal = match.group(0)
+                        tokens.append(('BOOLEAN', boolean_literal, line_number))
+                        line = line[len(boolean_literal):].lstrip()
+                        continue
+
                 # Verifica se a próxima parte da linha é um identificador
                 match = re.match(identifier_pattern, line)
                 if match:
@@ -79,6 +91,14 @@ def analyze_code(source_code):
                     line = line[len(integer):].lstrip()
                     continue
 
+            # Verifica se a próxima parte da linha é uma palavra-chave
+            for keyword in keywords:
+                if line.startswith(keyword):
+                    tokens.append(('KEYWORD', keyword, line_number))
+                    line = line[len(keyword):].lstrip()
+                    match = True
+                    break
+
             if not match:
                 # Verifica se a próxima parte da linha é um símbolo de pontuação
                 for symbol in punctuation_symbols:
@@ -92,6 +112,12 @@ def analyze_code(source_code):
             if not match:
                 print(f"Erro léxico na linha {line_number}: '{line[0]}' não é reconhecido como parte da linguagem.")
                 break
+
+        # Verifica se a linha contém ":"
+        if ':' in line:
+            inside_declaration = True
+        else:
+            inside_declaration = False
 
         line_number += 1
 

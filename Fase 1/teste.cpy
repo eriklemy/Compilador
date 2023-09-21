@@ -37,11 +37,13 @@ def led(estado: int) -> void: {
 }
 
 def main() -> int: {
-    if (read(led) == 0): {
-        led(1);
+    while (ligado): {
+        if (read(led) == 0): {
+            led(1);
+        }
+        else: led(0);
+        delay(1000);        
     }
-    else: led(0);
-    delay(1000);
 
     return 0;
 }
