@@ -31,7 +31,7 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 Este projeto está dividido em três fases, cada uma com sua entrega correspondente e apresentação:
 
-### Fase 1 - Definição da Linguagem e Análise Léxica
+### [Fase 1 - Definição da Linguagem e Análise Léxica](https://github.com/eriklemy/Compilador/tree/main/Fase%201)
 
 Nesta fase, você deverá criar uma linguagem de programação que permita a criação de programas para a plataforma de sistemas embarcados escolhida. A linguagem deve ser definida a partir de um esboço dado e deve incluir declarações para interagir com o hardware, tipos de dados estáticos, manipulação de números inteiros e de ponto flutuante de acordo com o padrão IEEE-754 de 16 bits, além de regras de produção para interação com o hardware. Você também deve criar no mínimo três exemplos de código que demonstrem todas as funcionalidades da linguagem.
 
