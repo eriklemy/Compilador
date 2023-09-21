@@ -205,8 +205,10 @@ stmt -> id (args) { stmt }
 Apresentação dos exemplos de código que demonstrem as funcionalidades da linguagem criada. Esses exemplos abranger diferentes aspectos da linguagem, como declaração de variáveis, expressões matemáticas, e interação com hardware.
 
 
-### Exemplo *.Cpy:
+#### 1. Exemplo Basico*.Cpy:
 ```python
+// Este eh um comentario
+
 // Declara uma variável inteira
 numero: int = 10;
 led_on: int = 1;
@@ -229,42 +231,93 @@ def area_circulo(raio: float16) -> float16: {
 }
 ```
 
-#### Interação com Hardware
+#### 2. Interação com Hardware
+##### 2.1 - Exemplo 1: Piscar led com intervalo de 1s
 ```python
 // Declara um pino como saída
 pin(led, GPIO_2, GPIO_OUT);
 
-// Escreve um valor no pino
-write(led, 1);
-
-// Lê um valor do pino
-read(led);
-
-// Declara uma função para ligar o LED
-def ligar_led() -> void: {
-    write(led, 1);
-}
-
-def desligar_led() -> void: {
-    write(led, 0);
-}
-
-def led(estado: int) -> void: {
-    if (estado == 1): {
-        // liga o LED
-        ligar_led();
-    }
-    else: desligar_led();
-}
-
 def main() -> int: {
     while (true): {
-        if (read(led) == 0): {
-            led(1);
-        }
-        else: led(0);
+        // Lê o estado atual do LED
+        estado_led: int = read(led);
+        
+        // Inverte o estado do LED
+        if (estado_led == 0):
+            write(led, 1);
+        else:
+            write(led, 0);
+        
+        // Aguarda 1 segundo
         delay(1000);
     }
     return 0;
 }
 ```
+
+##### 2.2 - Exemplo 2: Controle de LED com botão
+```python
+// Declara um pino como saída para o LED
+pin(led, GPIO_2, GPIO_OUT);
+
+// Declara um pino como entrada para o botão
+pin(botao, GPIO_3, GPIO_IN);
+
+def main() -> int: {
+    while (true): {
+        // Lê o estado atual do botão
+        estado_botao: int = read(botao);
+        
+        // Se o botão estiver pressionado, alterna o estado do LED
+        if (estado_botao == 1): {
+            estado_led = read(led);
+            if (estado_led == 0):
+                write(led, 1);
+            else:
+                write(led, 0);
+        }
+        
+        // Aguarda um curto período de tempo para evitar leituras múltiplas do botão
+        delay(100);
+    }
+    return 0;
+}
+```
+
+#### 2.3 - Exemplo 2: Controle de Intesidade do LED com Potenciometro 
+```python
+// Declara um pino como saída para o LED
+pin(led, GPIO_2, GPIO_OUT);
+
+// Declara um pino como entrada analógica para o potenciômetro (ADC)
+pin(potenciometro, ADC_0, GPIO_IN);
+
+def ler_valor_potenciometro() -> int: {
+    // Lê o valor analógico do potenciômetro (0-1023)
+    valor: int = read(potenciometro);
+    return valor;
+}
+
+def ajustar_brilho_led(valor_potenciometro: int) -> void: {
+    // Converte o valor do potenciômetro para um valor de brilho (0-1)
+    brilho: float16 = valor_potenciometro / 1023.0;
+    
+    // Define o brilho do LED com base no valor do potenciômetro
+    write(led, brilho);
+}
+
+def main() -> int: {
+    while (true): {
+        // Lê o valor atual do potenciômetro
+        valor_potenciometro: int = ler_valor_potenciometro();
+        
+        // Ajusta o brilho do LED com base no valor do potenciômetro
+        ajustar_brilho_led(valor_potenciometro);
+        
+        // Aguarda um curto período de tempo antes da próxima leitura
+        delay(100);
+    }
+    return 0;
+}
+```
+
