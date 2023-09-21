@@ -179,8 +179,8 @@ bool -> true | false
 | int         | int -> inteiro                           |
 | float16     | float16 -> real                          |
 | bool        | bool -> [0-1] ->                         |
-| down        | down -> -     #45 in ascii               |
-| up          | up -> +       #43 in ascii               |
+| down        | minum -> -     #45 in ascii               |
+| up          | add -> +       #43 in ascii               |
 
 
 ### Comunicação com Hardware
