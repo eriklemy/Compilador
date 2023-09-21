@@ -2,6 +2,8 @@ import sys
 import ply.lex as lex
 import ply.yacc as yacc
 
+# ANALISADOR LEXICO E SINTATICO - FASE 2
+
 # Defina os tokens
 tokens = (
     'ID',
