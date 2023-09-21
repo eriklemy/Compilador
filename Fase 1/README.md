@@ -145,7 +145,7 @@ O tratamento das letras e numeros, é efetuada a partir de regras quem definem c
 1. **NONE**
  - Indica que o elemento "None" deve ser transformado em "null". Isso pode ser usado para representar a ausência de valor.  
 2. **FEXP**
- -  pode ser transformado em duas formas diferentes, "down DIFITSF" ou "up DIFITSF". Essa produção parece estar relacionada com alguma representação de valores numéricos ou direções.
+ -  pode ser transformado em duas formas diferentes, "down DIFITSF" ou "up DIFITSF".
 3. **letters [aA-zZ]**
  -  São representado por letras maiúsculas ou minúsculas de "a" a "z" (ou "A" a "Z"). 
 4. **DIFITSF**
