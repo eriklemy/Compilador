@@ -2,7 +2,7 @@
 
 ## Descrição da Fase
 
-A Fase 1 deste projeto tem como objetivo principal a criação de uma linguagem de programação que permita a criação de programas destinados a sistemas embarcados, como Arduino Mega, Raspberry PI, ou Tiva, baseados na tecnologia ARM. A linguagem será desenvolvida a partir de um esboço inicial, com ênfase na interação com hardware, tipos de dados estáticos, manipulação de números inteiros e de ponto flutuante, além da implementação de operações matemáticas em conformidade com o padrão IEEE-754 de 16 bits, também conhecido como meia precisão.
+A Fase 1 deste projeto tem como objetivo principal a criação de uma linguagem de programação que permita a criação de programas destinados a sistemas embarcados, como Arduino Mega, Raspberry PI, ou Tiva, baseados na tecnologia ARM e a criação do analisador lexico. A linguagem será desenvolvida a partir de um esboço inicial, com ênfase na interação com hardware, tipos de dados estáticos, manipulação de números inteiros e de ponto flutuante, além da implementação de operações matemáticas em conformidade com o padrão IEEE-754 de 16 bits, também conhecido como meia precisão.
 
 ### Requisitos da Linguagem
 
@@ -65,7 +65,7 @@ type -> int | float16 | bool | void | null
 stmts -> stmts stmt | null
 ```
 
-As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
+As mudanças básicas em relação ao bloco de declaração fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função e alterações na forma de uso, a seguir são apresentadas as principais alterações. 
 
 1. **Adição de Funções e Parâmetros**:
    - A produção `func_decl` foi introduzida para permitir a declaração de funções com parâmetros e tipo de retorno.
@@ -74,7 +74,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - A produção `func_call` foi introduzida para representar a possibilidade da chamada de uma funçao dentro de um bloco de stmt.
 
 2. **Tipo Básico**:
-   - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool` e pode ser nulo sem retorno.
+   - A produção `type` continua a permitir tipos básicos, como `int`, `float16`, `bool` e pode ser `void` (nulo) sem retorno.
 
 3. **Identificadores**:
    - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos, porem serve para representar entidades no código, como funções.
@@ -113,7 +113,7 @@ return_stmt -> return expr;
 assign -> var: type = expr | var [ bool ] = expr;
 ```
 
-As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
+As mudanças básicas em relação ao lexema básico fornecido estão relacionadas à expansão da sintaxe e adição de instruções específicas para interação com hardware. A seguir são apresentadas as principais adições:
 
 1. **Adição de Retorno**:
    - A produção `return_stmt` foi introduzida para representar a possibilidade de retorno dentro de um bloco de estado.
@@ -202,8 +202,7 @@ stmt -> id (args) { stmt }
 
 ## Exemplos de Código
 
-Apresentação dos exemplos de código que demonstrem as funcionalidades da linguagem criada. Esses exemplos abranger diferentes aspectos da linguagem, como declaração de variáveis, expressões matemáticas, e interação com hardware.
-
+Aqui estão alguns exemplos de código que demonstram as funcionalidades da linguagem criada, abrangendo diferentes aspectos, como declaração de variáveis, expressões matemáticas e interação com hardware
 
 #### 1. Exemplo Basico*.Cpy:
 ```python
@@ -229,6 +228,12 @@ def somar(a: int, b: int) -> int: {
 def area_circulo(raio: float16) -> float16: {
     return PI * raio * raio;
 }
+
+def main() -> int: {
+    soma: int = somar(numero, numero);
+    return 0;
+}
+
 ```
 
 #### 2. Interação com Hardware
