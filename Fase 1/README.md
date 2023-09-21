@@ -43,9 +43,8 @@ A seguir, estão listados os principais requisitos que a linguagem deve atender:
 
 ## Apresentação da Linguagem
 
-Estética: A linguagem é baseada na sintaxe de Python, com algumas características de C, como a declaração de tipos de dados e necessidade de uso do ";".
-
-TODO: **Apresentação da Linguagem**: Durante a apresentação, destaque as principais características da linguagem, com ênfase nas regras de produção criadas para interação com o hardware.
+A linguagem criada é baseada na sintaxe de Python, com algumas características de C, como a declaração de tipos de dados para atribuição de valor e retorno, como também a necessidade de uso do ";" e “{}”.
+Abaixo são apresentadas as principais características da linguagem, com ênfase nas regras de produção expandidas e criadas para interação com o hardware.
 
 ### Bloco de Declarações
 
