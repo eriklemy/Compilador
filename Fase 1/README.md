@@ -62,7 +62,7 @@ arglist -> arglist, bool | bool
         | arglist, num | num 
         | arglist, id | id
 func_call -> id ( args );
-type -> int | float16 | bool | null
+type -> int | float16 | bool | void | null
 stmts -> stmts stmt | null
 ```
 

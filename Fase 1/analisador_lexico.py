@@ -32,7 +32,7 @@ float_pattern = r'\d+\.\d+'
 keywords = ['int', 'float16', 'bool', 'def', 'if', 'else', 'while', 'return', 'true', 'false', 'void']
 
 # Símbolos de pontuação da linguagem
-punctuation_symbols = [';', '{', '}', '(', ')', ',', '->', ':', '=', '==', '+', '-', '*', '/', '<', '>']
+punctuation_symbols = [';', '{', '}', '(', ')', ',', '->', ':', '=', '==', '!=', '!', '+', '-', '*', '/', '<', '>']
 
 # Função para analisar o código-fonte
 def analyze_code(source_code):

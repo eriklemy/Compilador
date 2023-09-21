@@ -4,7 +4,7 @@ numero2: int = 5;
 resultado: int;
 pi: float16 = 3.14159;
 ligado: bool = true;
-desligado: bool = false;
+desligado: bool = !ligado;
 
 // Realizando operações aritméticas
 resultado = numero1 + numero2;

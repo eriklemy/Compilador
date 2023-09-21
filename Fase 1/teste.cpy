@@ -1,3 +1,5 @@
+// Este e um comentario
+
 // Declara uma variável inteira
 numero: int = 10;
 led_on: int = 1;
@@ -8,16 +10,6 @@ pi: float16 = 3.14159;
 
 // Declara uma variável booleana
 ligado: bool = true;
-
-// Declara uma função para somar dois números
-def somar(a: int, b: int) -> int: {
-    return a + b;
-}
-
-// Declara uma função para calcular a área de um círculo
-def area_circulo(raio: float16) -> float16: {
-    return PI * raio * raio;
-}
 
 // Declara uma função para ligar o LED
 def ligar_led() -> void: {
