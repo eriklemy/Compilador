@@ -88,8 +88,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 ### Lexema Basico
 
 ```python
-stmt -> var = bool
-      | assign
+stmt -> assign
       | func_decl
       | return_stmt
       | if ( bool ): { stmt }
@@ -112,7 +111,7 @@ var -> var | id
 func_call -> id ( args );
 func_decl -> def id ( params ) -> type: block
 return_stmt -> return expr;
-assign -> id: type = expr | var;
+assign -> var: type = expr | var;
 ```
 
 As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
@@ -126,11 +125,12 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
    - A produção `type` continua a permitir tipos básicos, como `int`, `float16` e `bool`.
 
 3. **Identificadores**:
-   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos.
+   - A produção `id` permanece semelhante, permitindo identificadores compostos por letras maiúsculas e minúsculas, bem como dígitos numéricos, porem serve para representar entidades no código, como funções.
+   - A produção `var` foi criada para representar uma variável, que é um tipo específico de entidade que pode armazenar e conter valores. Variáveis têm um nome (representado por um `id`) e um tipo de dados (representado por `type` na gramática). `var` é usado para definir e trabalhar com variáveis dentro das regras gramaticais.
 
 4. **Outras Instruções**:
    - A produção `stmt` foi expandida para acomodar instruções específicas relacionadas ao hardware e funções.
-   - A produção `assign` foi introduzida para representar a atribuicao de valor a uma `decl` dado pelo nome `id` seguido do `type` após `:` e a `expr` ou valor a ser atribuido.
+   - A produção `assign` foi introduzida para representar a atribuicao de valor a uma `decl` dado pelo nome `var` seguido do `type` após `:` e a `expr` ou valor a ser atribuido.
 
 5. **Blocos de Função**:
    - As produções `func_decl` e `block` são usadas para definir o escopo de uma função, incluindo a lista de parâmetros e o corpo da função.
