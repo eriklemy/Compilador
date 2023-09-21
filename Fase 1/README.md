@@ -315,7 +315,7 @@ def main() -> int: {
 }
 ```
 
-#### 2.3 - Exemplo 2: Controle de Intesidade do LED com Potenciometro 
+#### 2.3 - Exemplo 3: Controle de Intesidade do LED com Potenciometro 
 ```python
 // Declara um pino como saída para o LED
 pin(led, GPIO_2, GPIO_OUT);
