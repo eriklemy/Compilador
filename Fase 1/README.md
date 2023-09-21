@@ -164,23 +164,49 @@ int -> num
 float16 ->  real
 bool -> true | false
 ```
+O tratamento das letras e numeros, é efetuada a partir de regras quem definem como um elemento pode ser substituído por outro, permitindo a construção e interpretação de estruturas dentro desse sistema. Essas regras são fundamentais para a compreensão e manipulação de dados e instruções no contexto em que são aplicadas
+
+1. **NONE**
+ - Indica que o elemento "None" deve ser transformado em "null". Isso pode ser usado para representar a ausência de valor.  
+
+2. **FEXP**
+ -  pode ser transformado em duas formas diferentes, "down DIFITSF" ou "up DIFITSF". Essa produção parece estar relacionada com alguma representação de valores numéricos ou direções.
+
+3. **letters [aA-zZ]**
+ -  São representado por letras maiúsculas ou minúsculas de "a" a "z" (ou "A" a "Z"). 
+4. **DIFITSF**
+  -  transformada em diferentes formas, dependendo do contexto. Pode ser transformada em "DIGITSF DIGITS", em "None" ou em "FEXP
+5. **DIGITS**   
+  - Pode pode ser introduzido com um sinal de mais ou menos ("-+" é usado como um possível sinal) ou apenas por um número.
+6. **int**
+  -  se refere à representação de números inteiros em algum contexto.
+7. **float16**
+   -  Se refere à representação de números de ponto flutuante com 16 bits de precisão em algum contexto.
+8. **bool**
+   - Se refere a reprensentação de boleanos 0 "false" 1 "true"
+9. **minus**
+    - Referente à representação de números negativos.
+10. **plus**
+    - Referente à representação de números positivos
+    
+A seguir pode ser analizada a tabela, bem como a representação em ascii dos caracteres
 
 | Produção    | Regra de Produção                        |
 |-------------|------------------------------------------|
 | None        | None -> null                             |
 | FEXP        | FEXP -> down DIFITSF                     |
-|             | FEXP -> up DIFITSF                       |
-| letters [A-Z] | letters [A-Z] ->                       |
+|             | FEXP -> up DIFITSF                       | # 65 to 90 'A-Z' and 97 to 122 'a-z' in ascii
+| letters [aA-zZ] | letters [aA-zZ]                      | 
 | DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
 |             | DIFITSF -> None                          |
 |             | DIFITSF -> FEXP                          |
-| DIGITS      | DIGITS -> -+[0-9]                        |
-|             | DIGITS -> num [0-9]                      |
+| DIGITS      | DIGITS -> -+[0-9]                        | # 43,45, 48 to 57 in ascii
+|             | DIGITS -> num [0-9]                      | # 48 to 57 in ascii
 | int         | int -> inteiro                           |
 | float16     | float16 -> real                          |
-| bool        | bool -> [0-1] ->                         |
-| down        | down -> -     #45 in ascii               |
-| up          | up -> +       #43 in ascii               |
+| bool        | bool -> [0-1]                            | # 0 and 1 in ascii
+| minus       | minum -> -                               | # 45 in ascii  
+| plus        | plus-> +                                 | # 43 in ascii  
 
 
 ### Comunicação com Hardware
