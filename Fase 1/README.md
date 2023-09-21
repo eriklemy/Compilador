@@ -169,7 +169,7 @@ O tratamento das letras e numeros, é efetuada a partir de regras quem definem c
 6. **int**
   -  se refere à representação de números inteiros em algum contexto.
 7. **float16**
-   -  Se refere à representação de números de ponto flutuante com 16 bits de precisão em algum contexto.
+   -  Se refere à representação de números de ponto flutuante com 16 bits de precisão no padrao IEEE-754 em algum contexto.
 8. **bool**
    - Se refere a reprensentação de boleanos 0 "false" 1 "true"
 9. **minus**
