@@ -169,18 +169,18 @@ bool -> true | false
 |-------------|------------------------------------------|
 | None        | None -> null                             |
 | FEXP        | FEXP -> down DIFITSF                     |
-|             | FEXP -> up DIFITSF                       |
-| letters [A-Z] | letters [A-Z] ->                       |
+|             | FEXP -> up DIFITSF                       | # 65 to 90 'A-Z' and 97 to 122 'a-z' in ascii
+| letters [aA-zZ] | letters [aA-zZ]                      | 
 | DIFITSF     | DIFITSF -> DIGITSF DIGITS                |
 |             | DIFITSF -> None                          |
 |             | DIFITSF -> FEXP                          |
-| DIGITS      | DIGITS -> -+[0-9]                        |
-|             | DIGITS -> num [0-9]                      |
+| DIGITS      | DIGITS -> -+[0-9]                        | # 43,45, 48 to 57 in ascii
+|             | DIGITS -> num [0-9]                      | # 48 to 57 in ascii
 | int         | int -> inteiro                           |
 | float16     | float16 -> real                          |
-| bool        | bool -> [0-1] ->                         |
-| down        | minum -> -     #45 in ascii               |
-| up          | add -> +       #43 in ascii               |
+| bool        | bool -> [0-1]                            | # 0 and 1 in ascii
+| minus       | minum -> -                               | # 45 in ascii  
+| plus        | plus-> +                                 | # 43 in ascii  
 
 
 ### Comunicação com Hardware
