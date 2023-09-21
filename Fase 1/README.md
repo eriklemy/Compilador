@@ -133,24 +133,14 @@ As mudanças básicas em relação ao lexema básico fornecido estão relacionad
 
 ### Regra de Produção para Expressões
 ```python
-bool -> join || join
-join -> equality && equality
+bool -> bool || join | join
+join -> join && equality && equality
 equality -> rel ( == | != ) rel
 rel -> expr (< | <= | >= | >) expr
 expr -> term ( + | - ) term
-term -> unary ( * | / ) unary
+term -> unary ( * | / | %) unary
 unary -> ( ! | - ) unary | factor
 factor -> ( bool ) | var | num | real | true | false
-bin_op -> expr + expr     
-       | expr - expr  
-       | expr * expr  
-       | expr / expr  
-       | expr == expr 
-       | expr != expr 
-       | expr < expr  
-       | expr <= expr 
-       | expr > expr  
-       | expr >= expr 
 ```
 
 ### Tratamento dos numeros e letras
@@ -168,10 +158,8 @@ O tratamento das letras e numeros, é efetuada a partir de regras quem definem c
 
 1. **NONE**
  - Indica que o elemento "None" deve ser transformado em "null". Isso pode ser usado para representar a ausência de valor.  
-
 2. **FEXP**
  -  pode ser transformado em duas formas diferentes, "down DIFITSF" ou "up DIFITSF". Essa produção parece estar relacionada com alguma representação de valores numéricos ou direções.
-
 3. **letters [aA-zZ]**
  -  São representado por letras maiúsculas ou minúsculas de "a" a "z" (ou "A" a "Z"). 
 4. **DIFITSF**
@@ -211,7 +199,7 @@ A seguir pode ser analizada a tabela, bem como a representação em ascii dos ca
 
 ### Comunicação com Hardware
 
-Para comunicaçao com o hardware foram criadas e adicionadas as seguintes regras ao lexema basico:
+Para comunicaçao com o hardware foram criadas e adicionadas as seguintes regras ao lexema basico as quais já foram comentadas anteriormente:
 
 ```python
 pin(nome, pino, direcao)
