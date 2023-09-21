@@ -56,12 +56,13 @@ decls -> decls decl | null
 decl -> type id;
 params -> param, params | params | null
 param -> type id
-args -> arglist | null
-      | expr | null
+func_decl -> def id ( params ) -> type: block | def id ( params ): block
+args -> arglist | expr | null
 arglist -> arglist, bool | bool 
         | arglist, num | num 
         | arglist, id | id
-type -> int | float16 | bool
+func_call -> id ( args );
+type -> int | float16 | bool | null
 stmts -> stmts stmt | null
 ```
 
@@ -91,6 +92,7 @@ As mudanças básicas em relação ao bloco fornecido estão relacionadas à exp
 stmt -> assign
       | func_decl
       | return_stmt
+      | func_call
       | if ( bool ): { stmt }
       | if ( bool ): { stmt } else: { stmt }
       | if ( bool ): { stmt } else: stmt
@@ -108,10 +110,8 @@ stmt -> assign
       | delay(num)
 var -> var | id
      | var [ bool ] | id
-func_call -> id ( args );
-func_decl -> def id ( params ) -> type: block
 return_stmt -> return expr;
-assign -> var: type = expr | var;
+assign -> var: type = expr | var [ bool ] = expr;
 ```
 
 As mudanças básicas em relação ao bloco fornecido estão relacionadas à expansão da sintaxe para acomodar a criação de funções, a introdução de parâmetros de função, declaração de pinos e instruções específicas para interação com hardware. Aqui estão as principais mudanças em relação ao bloco fornecido:
