@@ -125,7 +125,7 @@ equality -> rel ( == | != ) rel
 rel -> expr (< | <= | >= | >) expr
 expr -> term ( + | - ) term
 term -> unary ( * | / | %) unary
-unary -> ( ! | - ) unary | factor
+unary -> ( ! | - ) unary | ++var | --var | var++ | var-- | factor 
 factor -> ( bool ) | var | num | real | true | false
 ```
 
