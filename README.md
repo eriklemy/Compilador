@@ -13,6 +13,20 @@ Este é o README do Projeto Disciplinar de Compiladores para o ano de 2023, turm
 
 O objetivo deste projeto é permitir que você pesquise e aplique os conceitos de compiladores em uma plataforma de sistemas embarcados, como Arduino Mega, Raspberry PI ou Tiva, baseada na tecnologia ARM. 
 
+### Requisitos da Linguagem
+
+A seguir, estão listados os principais requisitos que a linguagem deve atender:
+
+- [x] Estrutura do Programa: Um programa na linguagem consiste em um bloco de declarações definidas.
+
+- [] Tipos Básicos: A linguagem deve definir tipos básicos para representar dados, incluindo inteiros e números de ponto flutuante de acordo com o padrão IEEE-754 de 16 bits.
+
+- [x] Expressões e Operadores: Deve ser implementada a precedência de operadores e associatividade corretas em expressões matemáticas. Use não-terminais para definir níveis de precedência e um não-terminal "factor" para tratar expressões entre parênteses, identificadores, referências de arranjos e constantes.
+
+- [x] Tipos Estáticos: A linguagem deve ser de tipos estáticos, ou seja, os tipos de variáveis, valores e expressões precisam ser explicitamente definidos no código.
+
+- [x] Interção com Hardware: É necessário definir regras de produção para interação com o hardware, permitindo ler e escrever em pinos do microcomputador, portas seriais, e em componentes opcionais, como conversores digital-analógico e analógico-digital.
+
 ## Descrição do Trabalho
 
 Este projeto está dividido em três fases, cada uma com sua entrega correspondente e apresentação:
