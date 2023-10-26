@@ -71,10 +71,11 @@ def main() -> int: {
         estado_led: int = read(led);
         
         // Inverte o estado do LED
-        if (estado_led == 0):
+        if (estado_led == 0): {
             write(led, 1);
-        else:
+        } else: {
             write(led, 0);
+        }
         
         // Aguarda 1 segundo
         delay(1000);
@@ -99,10 +100,11 @@ def main() -> int: {
         // Se o botão estiver pressionado, alterna o estado do LED
         if (estado_botao == 1): {
             estado_led = read(led);
-            if (estado_led == 0):
+            if (estado_led == 0): {
                 write(led, 1);
-            else:
+            } else: {
                 write(led, 0);
+            }
         }
         
         // Aguarda um curto período de tempo para evitar leituras múltiplas do botão
