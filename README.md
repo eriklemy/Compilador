@@ -68,6 +68,4 @@ TODO: Escrever
 
 ## Documentação Adicional
 
-- Mantenha um registro de todas as decisões de design, desafios encontrados e soluções implementadas ao longo do projeto. Isso pode ser útil para futuros desenvolvimentos e para explicar seu processo.
-
-Lembre-se de que este é um projeto complexo que abrange várias áreas da computação. Planeje seu tempo adequadamente e consulte regularmente seus professores e colegas para obter orientação e apoio.
+- Registro de todas as decisões de design, desafios encontrados e soluções implementadas ao longo do projeto. Isso pode ser útil para futuros desenvolvimentos e para explicar seu processo.
