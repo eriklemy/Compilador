@@ -2,6 +2,8 @@ grammar Parser;
 
 // Importa o lexer
 import Lexer;
+options { tokenVocab=Lexer; }
+
 
 program: (statement
        | function)*
@@ -13,6 +15,7 @@ statement: hardware_statement
          | comparison_expression
          | assignment
          | while_statement
+         | for_statement
          | if_statement
          | return_statement
          ;
@@ -24,8 +27,10 @@ hardware_statement: PIN '(' params ')' SEMICOLON
                   ;
  
 variable_declaration: ID ':' type SEMICOLON
-                    | ID ':' type (ASSIGN expression)? SEMICOLON 
-                    | assignment;
+                    | ID ':' type (ASSIGN expression)? SEMICOLON
+					| ID ':' type (ASSIGN expression)? 
+				 	| assignment
+					;
 
 type: INT | FLOAT16 | BOOL | VOID;
 
@@ -62,6 +67,12 @@ while_statement: WHILE '(' expression ')' ':' block;
 if_statement: IF '(' expression ')' ':' block (ELSE ':' block)? 
             | IF '(' expression ')' ':';
 
+initialization: variable_declaration 
+                | expression
+                ;
+
+for_statement: FOR '(' initialization ';' expression ';' assignment ')'':' block;
+
 return_statement: RETURN expression SEMICOLON;
 
 comparison_expression: ID comparison_operator expression;
@@ -75,4 +86,6 @@ comparison_operator: EQUAL
                  ;
 
 assignment: ID ASSIGN expression SEMICOLON 
-          | ID ASSIGN hardware_statement;
+          | ID ASSIGN hardware_statement
+		  | ID ASSIGN expression
+ 		  ;

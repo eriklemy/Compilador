@@ -25,15 +25,20 @@ def led(estado: int) -> void: {
         // liga o LED
         ligar_led();
     }
-    else: desligar_led();
+    else: {
+        desligar_led();
+    }
 }
 
 def main() -> int: {
     while (ligado): {
-        if (read(led) == 0): {
+        val: int = read(led);
+        if (val == 0): {
             led(1);
         }
-        else: led(0);
+        else: {
+            led(0);
+        }
         delay(1000);        
     }
 

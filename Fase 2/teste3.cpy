@@ -15,7 +15,8 @@ def area_circulo(raio: float16) -> float16: {
 }
 
 def main() -> int: {
-    for (int i = 0; i <= total; i = i + 1): {
+    total: int = 10;
+    for (i: int = 0; i <= total; i = i + 1): {
         if (i == 5) : {
             circle_area: float16 = area_circulo(3);
         } else: {

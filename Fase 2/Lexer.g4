@@ -7,6 +7,7 @@ BOOL: 'bool';
 VOID: 'void';
 
 DEF: 'def';
+FOR: 'for';
 WHILE: 'while';
 IF: 'if';
 ELIF: 'elif';
